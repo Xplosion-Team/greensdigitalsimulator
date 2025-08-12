@@ -647,7 +647,7 @@ class SequenceSelection:
             else:
                 idx += 1
 
-        batch_start = np.array(idx_list, dtype=np.int)
+        batch_start = np.array(idx_list, dtype=np.int64)
         batch_idx = batch_start[:, np.newaxis] + np.arange(self.seq_len)
 
         self.x_est = x_est[0, batch_idx, :]
@@ -757,7 +757,7 @@ class DigitalTwin:
         ]
 
         sim_time = len(df_scenario)
-        batch_start = np.array([0], dtype=np.int)
+        batch_start = np.array([0], dtype=np.int64)
         batch_idx = batch_start[:, np.newaxis] + np.arange(sim_time)
 
         x_est = np.array(df_scenario[states].values).astype(np.float32)

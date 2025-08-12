@@ -187,9 +187,13 @@ def generate_plot(frame=None):
 
 @app.route('/')
 def index():
-    """Main page"""
-    plot_url = generate_plot()
-    return render_template('index.html', plot_url=plot_url, params=scenario_params, digital_twin=current_digital_twin)
+    try:
+        plot_url = generate_plot()
+        return render_template('index.html', plot_url=plot_url, params=scenario_params, digital_twin=current_digital_twin)
+    except Exception as e:
+        print(f"Error generating plot: {e}")
+        # Return a simple error page or retry
+        return render_template('index.html', plot_url=None, params=scenario_params, digital_twin=current_digital_twin, error=str(e))
 
 @app.route('/update_scenario', methods=['POST'])
 def update_scenario():
