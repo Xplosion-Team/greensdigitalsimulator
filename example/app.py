@@ -7,6 +7,10 @@ matplotlib.use('Agg')  # Use non-interactive backend
 import io
 import base64
 from datetime import datetime
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from t1dsim_ai.individual_model import DigitalTwin
 import json
 import time
