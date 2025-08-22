@@ -6,6 +6,8 @@
     <title>Greens Health Simulator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
         :root {
             --primary-green: #2E8B57;
@@ -279,6 +281,318 @@
             transform: translateY(-3px);
         }
 
+        /* Side menu styles */
+        .side-menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .side-menu-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(46, 139, 87, 0.4);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu-header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .side-menu-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .nutrition-summary {
+            background: var(--light-green);
+            border-radius: 15px;
+            padding: 15px;
+            border: 2px solid var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        .nutrition-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(46, 139, 87, 0.1);
+            border: 1px solid var(--accent-green);
+        }
+
+        .nutrition-card h6 {
+            color: var(--primary-green);
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .nutrition-card span {
+            color: var(--dark-green);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .nutrition-tip {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--accent-green) 100%);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(40, 167, 69, 0.2);
+        }
+
+        .nutrition-tip h6 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .nutrition-tip p {
+            color: var(--white);
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .food-alternative {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--success-color);
+            box-shadow: 0 2px 5px rgba(46, 139, 87, 0.1);
+        }
+
+        .food-alternative h6 {
+            color: var(--dark-green);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .food-alternative p {
+            color: var(--gray-medium);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        /* Voice Module Styles */
+        .voice-controls {
+            margin-bottom: 15px;
+        }
+        
+        .food-log-entry {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--primary-green);
+            box-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);
+        }
+        
+        .food-log-entry:hover {
+            box-shadow: 0 4px 8px rgba(46, 139, 87, 0.15);
+            transform: translateY(-1px);
+            transition: all 0.2s ease;
+        }
+        
+        .manual-entry {
+            background: var(--light-green);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid var(--accent-green);
+        }
+        
+        .voice-status {
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        
+        .voice-status.listening {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: var(--white);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        /* Enhanced Nutrition Analysis Styles */
+        .quick-add-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .quick-add-buttons .btn {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 15px;
+        }
+        
+        .impact-card {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+        
+        .impact-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .nutrition-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(46, 139, 87, 0.1);
+            border: 1px solid var(--accent-green);
+            transition: all 0.3s ease;
+        }
+        
+        .nutrition-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.2);
+        }
+        
+        .nutrition-card h6 {
+            color: var(--dark-green);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .nutrition-card span {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+        
+        .progress {
+            background-color: rgba(46, 139, 87, 0.1);
+            border-radius: 10px;
+        }
+        
+        .progress-bar {
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .glycemic-indicator .alert {
+            border-radius: 10px;
+            border: none;
+            font-size: 12px;
+        }
+        
+        .glycemic-indicator .alert-success {
+            background: linear-gradient(135deg, #28A745 0%, #20B2AA 100%);
+            color: white;
+        }
+        
+        .glycemic-indicator .alert-warning {
+            background: linear-gradient(135deg, #FFC107 0%, #FFA500 100%);
+            color: white;
+        }
+        
+        .glycemic-indicator .alert-danger {
+            background: linear-gradient(135deg, #DC3545 0%, #FF6347 100%);
+            color: white;
+        }
+        
+        /* Notification Toast */
+        .notification-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Add Plotly container styling */
+        #plotlyContainer {
+            width: 100%;
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
         /* Responsive improvements */
         @media (max-width: 768px) {
             .main-container {
@@ -293,6 +607,250 @@
     </style>
 </head>
 <body>
+    <!-- Side Menu Toggle Button -->
+    <button class="side-menu-toggle" onclick="toggleSideMenu()">
+        <i class="fas fa-apple-alt"></i>
+    </button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeSideMenu()"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h5><i class="fas fa-apple-alt me-2"></i>Nutrition Assistant</h5>
+            <button class="side-menu-close" onclick="closeSideMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Enhanced Food Selection -->
+        <div class="mb-4">
+            <h6 class="text-primary mb-3">
+                <i class="fas fa-utensils me-2"></i>
+                What are you planning to eat?
+            </h6>
+            
+            <!-- Quick Add Buttons -->
+            <div class="mb-3">
+                <label class="parameter-label">Quick Add Common Foods</label>
+                <div class="quick-add-buttons">
+                    <button class="btn btn-sm btn-outline-primary" onclick="quickAddFood('apple', 25)">
+                        <i class="fas fa-apple-alt"></i> Apple
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="quickAddFood('bread', 15)">
+                        <i class="fas fa-bread-slice"></i> Bread
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="quickAddFood('rice', 45)">
+                        <i class="fas fa-seedling"></i> Rice
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" onclick="quickAddFood('pizza', 30)">
+                        <i class="fas fa-pizza-slice"></i> Pizza
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="parameter-label">Food Category</label>
+                <select class="form-select" id="foodCategory" onchange="updateNutritionRecommendations()">
+                    <option value="">Select a food category...</option>
+                    <option value="breakfast">Breakfast Foods</option>
+                    <option value="lunch">Lunch Foods</option>
+                    <option value="dinner">Dinner Foods</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="beverages">Beverages</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="parameter-label">Specific Food Item</label>
+                <select class="form-select" id="foodItem" onchange="updateNutritionAlternatives()">
+                    <option value="">Select a food item...</option>
+                </select>
+            </div>
+            
+            <!-- Quantity and Portion Control -->
+            <div class="mb-3">
+                <label class="parameter-label">Quantity & Portion</label>
+                <div class="row">
+                    <div class="col-6">
+                        <input type="number" class="form-control" id="foodQuantity" value="1" min="0.1" step="0.1" onchange="updateNutritionAnalysis()">
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" id="foodUnit" onchange="updateNutritionAnalysis()">
+                            <option value="serving">Serving</option>
+                            <option value="piece">Piece</option>
+                            <option value="slice">Slice</option>
+                            <option value="cup">Cup</option>
+                            <option value="grams">Grams</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-success w-100" onclick="analyzeNutrition()">
+                <i class="fas fa-search me-2"></i>Analyze Nutrition Impact
+            </button>
+        </div>
+        
+        <!-- Enhanced Current Meal Analysis -->
+        <div class="mb-4">
+            <h6 class="text-primary mb-3">
+                <i class="fas fa-chart-pie me-2"></i>
+                Current Meal Analysis
+            </h6>
+            
+            <!-- Blood Sugar Impact Prediction -->
+            <div class="blood-sugar-impact mb-3">
+                <div class="impact-card">
+                    <h6><i class="fas fa-tint me-2"></i>Estimated Blood Sugar Impact</h6>
+                    <div class="impact-value" id="bloodSugarImpact">0 mg/dL</div>
+                    <small class="text-muted">Based on current meal</small>
+                </div>
+            </div>
+            
+            <div class="nutrition-summary">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="nutrition-card">
+                            <h6><i class="fas fa-bread-slice me-1"></i>Carbs</h6>
+                            <span id="currentCarbs">0</span>g
+                            <div class="progress mt-1" style="height: 4px;">
+                                <div class="progress-bar bg-warning" id="carbsProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="nutrition-card">
+                            <h6><i class="fas fa-drumstick-bite me-1"></i>Protein</h6>
+                            <span id="currentProtein">0</span>g
+                            <div class="progress mt-1" style="height: 4px;">
+                                <div class="progress-bar bg-success" id="proteinProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="nutrition-card">
+                            <h6><i class="fas fa-cheese me-1"></i>Fat</h6>
+                            <span id="currentFat">0</span>g
+                            <div class="progress mt-1" style="height: 4px;">
+                                <div class="progress-bar bg-info" id="fatProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="nutrition-card">
+                            <h6><i class="fas fa-leaf me-1"></i>Fiber</h6>
+                            <span id="currentFiber">0</span>g
+                            <div class="progress mt-1" style="height: 4px;">
+                                <div class="progress-bar bg-primary" id="fiberProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Glycemic Index Indicator -->
+            <div class="glycemic-indicator mt-3">
+                <div class="alert" id="glycemicAlert" style="display: none;">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <span id="glycemicText"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Smart Recommendations -->
+        <div class="mb-4">
+            <h6 class="text-success">
+                <i class="fas fa-lightbulb me-2"></i>
+                Smart Recommendations
+            </h6>
+            <div id="nutritionRecommendations">
+                <p class="text-muted">Select a food category to see personalized recommendations.</p>
+            </div>
+        </div>
+        
+        <!-- Healthier Alternatives -->
+        <div class="mb-4">
+            <h6 class="text-info">
+                <i class="fas fa-exchange-alt me-2"></i>
+                Healthier Alternatives
+            </h6>
+            <div id="nutritionAlternatives">
+                <p class="text-muted">Choose a food item to see healthier alternatives.</p>
+            </div>
+        </div>
+        
+        <!-- Voice Food Logging -->
+        <div class="mb-4">
+            <h6 class="text-warning">
+                <i class="fas fa-microphone me-2"></i>
+                Voice Food Logging
+            </h6>
+            <div class="voice-controls">
+                <button class="btn btn-warning w-100 mb-2" id="voiceLogBtn" onclick="startVoiceLogging()">
+                    <i class="fas fa-microphone me-2"></i>Start Voice Logging
+                </button>
+                <button class="btn btn-outline-secondary w-100 mb-2" onclick="loadFoodLog()">
+                    <i class="fas fa-list me-2"></i>View Food Log
+                </button>
+                <button class="btn btn-outline-danger w-100" onclick="clearFoodLog()">
+                    <i class="fas fa-trash me-2"></i>Clear Food Log
+                </button>
+            </div>
+            
+            <!-- Voice Status -->
+            <div id="voiceStatus" class="mt-3" style="display: none;">
+                <div class="alert alert-info">
+                    <i class="fas fa-microphone-alt me-2"></i>
+                    <span id="voiceStatusText">Listening for food input...</span>
+                </div>
+            </div>
+            
+            <!-- Food Log Display -->
+            <div id="foodLogDisplay" class="mt-3" style="display: none;">
+                <h6 class="text-primary">Recent Food Log</h6>
+                <div id="foodLogContent"></div>
+                <div class="mt-2">
+                    <small class="text-muted">
+                        <i class="fas fa-chart-line me-1"></i>
+                        Total carbs (24h): <span id="totalCarbs24h">0</span>g
+                    </small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Manual Food Entry -->
+        <div class="mb-4">
+            <h6 class="text-success">
+                <i class="fas fa-edit me-2"></i>
+                Manual Food Entry
+            </h6>
+            <div class="manual-entry">
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="manualFoodName" placeholder="Enter food name (e.g., apple, bread, rice)">
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <input type="number" class="form-control" id="manualQuantity" placeholder="Quantity" value="1" min="0.1" step="0.1">
+                    </div>
+                    <div class="col-6">
+                        <select class="form-select" id="manualUnit">
+                            <option value="serving">Serving</option>
+                            <option value="cup">Cup</option>
+                            <option value="grams">Grams</option>
+                            <option value="slice">Slice</option>
+                            <option value="piece">Piece</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-success w-100" onclick="manualLogFood()">
+                    <i class="fas fa-plus me-2"></i>Add to Food Log
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -469,8 +1027,8 @@
                                                 </div>
                                                 <p class="mt-2">Generating simulation...</p>
                                             </div>
-                                            <img id="simulationPlot" src="data:image/png;base64,{{ plot_url }}" 
-                                                 class="simulation-plot" alt="T1D Simulation Plot">
+                                                                                         <!-- Replace img with div for Plotly -->
+                                             <div id="plotlyContainer"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -505,7 +1063,7 @@
         function updateScenario() {
             // Show loading
             document.getElementById('loading').style.display = 'block';
-            document.getElementById('simulationPlot').style.display = 'none';
+            document.getElementById('plotlyContainer').style.display = 'none';
 
             // Get form values
             const data = {
@@ -526,10 +1084,21 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Update plot
-                document.getElementById('simulationPlot').src = 'data:image/png;base64,' + data.plot_url;
+                console.log('Update response:', data); // Debug log
+                
+                // Update plot with Plotly
+                if (data.plot_json) {
+                    const plotData = JSON.parse(data.plot_json);
+                    console.log('Parsed plot data:', plotData); // Debug log
+                    Plotly.newPlot('plotlyContainer', plotData.data, plotData.layout)
+                        .then(() => console.log('Updated plot rendered successfully'))
+                        .catch(err => console.error('Updated plot rendering error:', err));
+                } else {
+                    console.error('No plot_json in response');
+                }
+                
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('simulationPlot').style.display = 'block';
+                document.getElementById('plotlyContainer').style.display = 'block';
 
                 // Update statistics
                 updateStats();
@@ -537,7 +1106,7 @@
             .catch(error => {
                 console.error('Error:', error);
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('simulationPlot').style.display = 'block';
+                document.getElementById('plotlyContainer').style.display = 'block';
             });
         }
 
@@ -592,6 +1161,19 @@
         // Auto-update stats on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateStats();
+            // Initialize plot on page load
+            const initialPlotJson = JSON.parse('{{ plot_json | safe }}');
+            console.log('Initial plot JSON:', initialPlotJson); // Debug log
+            
+            if (initialPlotJson && typeof initialPlotJson === 'object') {
+                console.log('Plot data:', initialPlotJson.data); // Debug log
+                console.log('Plot layout:', initialPlotJson.layout); // Debug log
+                Plotly.newPlot('plotlyContainer', initialPlotJson.data, initialPlotJson.layout)
+                    .then(() => console.log('Plot rendered successfully'))
+                    .catch(err => console.error('Plot rendering error:', err));
+            } else {
+                console.error('Invalid plot JSON:', initialPlotJson);
+            }
         });
 
         // Animation variables
@@ -658,12 +1240,538 @@
             fetch(`/get_animation_frame/${frame}`)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('simulationPlot').src = 'data:image/png;base64,' + data.plot_url;
+                // The data.plot_url is no longer needed, as we are updating the plot directly
+                // document.getElementById('simulationPlot').src = 'data:image/png;base64,' + data.plot_url;
             })
             .catch(error => {
                 console.error('Error updating animation frame:', error);
             });
         }
+
+        // Side menu functions
+        function toggleSideMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            
+            if (sideMenu.classList.contains('open')) {
+                closeSideMenu();
+            } else {
+                sideMenu.classList.add('open');
+                overlay.classList.add('active');
+            }
+        }
+
+        function closeSideMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const overlay = document.getElementById('overlay');
+            
+            sideMenu.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        // Nutrition data
+        const nutritionData = {
+            breakfast: {
+                "Oatmeal": { carbs: 27, protein: 5, fat: 3, fiber: 4, glycemic: "low" },
+                "Cereal": { carbs: 30, protein: 3, fat: 1, fiber: 2, glycemic: "medium" },
+                "Toast": { carbs: 15, protein: 3, fat: 1, fiber: 1, glycemic: "medium" },
+                "Pancakes": { carbs: 35, protein: 4, fat: 2, fiber: 1, glycemic: "high" },
+                "Yogurt": { carbs: 12, protein: 8, fat: 0, fiber: 0, glycemic: "low" }
+            },
+            lunch: {
+                "Sandwich": { carbs: 25, protein: 12, fat: 8, fiber: 2, glycemic: "medium" },
+                "Pasta": { carbs: 45, protein: 8, fat: 2, fiber: 3, glycemic: "high" },
+                "Rice": { carbs: 40, protein: 4, fat: 0, fiber: 1, glycemic: "high" },
+                "Salad": { carbs: 10, protein: 15, fat: 5, fiber: 4, glycemic: "low" },
+                "Soup": { carbs: 20, protein: 10, fat: 3, fiber: 3, glycemic: "medium" }
+            },
+            dinner: {
+                "Pizza": { carbs: 35, protein: 12, fat: 10, fiber: 2, glycemic: "high" },
+                "Chicken": { carbs: 0, protein: 25, fat: 8, fiber: 0, glycemic: "low" },
+                "Fish": { carbs: 0, protein: 20, fat: 5, fiber: 0, glycemic: "low" },
+                "Beef": { carbs: 0, protein: 22, fat: 12, fiber: 0, glycemic: "low" },
+                "Vegetables": { carbs: 15, protein: 5, fat: 0, fiber: 6, glycemic: "low" }
+            },
+            snacks: {
+                "Chips": { carbs: 15, protein: 2, fat: 10, fiber: 1, glycemic: "high" },
+                "Nuts": { carbs: 6, protein: 6, fat: 14, fiber: 3, glycemic: "low" },
+                "Fruit": { carbs: 20, protein: 1, fat: 0, fiber: 3, glycemic: "medium" },
+                "Crackers": { carbs: 18, protein: 3, fat: 4, fiber: 1, glycemic: "medium" },
+                "Cheese": { carbs: 1, protein: 7, fat: 9, fiber: 0, glycemic: "low" }
+            },
+            desserts: {
+                "Ice Cream": { carbs: 25, protein: 3, fat: 8, fiber: 0, glycemic: "high" },
+                "Cake": { carbs: 35, protein: 4, fat: 12, fiber: 1, glycemic: "high" },
+                "Cookies": { carbs: 20, protein: 2, fat: 8, fiber: 1, glycemic: "high" },
+                "Chocolate": { carbs: 18, protein: 2, fat: 10, fiber: 2, glycemic: "medium" },
+                "Pudding": { carbs: 22, protein: 2, fat: 3, fiber: 0, glycemic: "high" }
+            },
+            beverages: {
+                "Soda": { carbs: 40, protein: 0, fat: 0, fiber: 0, glycemic: "high" },
+                "Juice": { carbs: 30, protein: 1, fat: 0, fiber: 1, glycemic: "high" },
+                "Milk": { carbs: 12, protein: 8, fat: 5, fiber: 0, glycemic: "medium" },
+                "Water": { carbs: 0, protein: 0, fat: 0, fiber: 0, glycemic: "low" },
+                "Tea": { carbs: 0, protein: 0, fat: 0, fiber: 0, glycemic: "low" }
+            }
+        };
+
+        const alternatives = {
+            "Oatmeal": ["Greek yogurt with berries", "Chia pudding", "Quinoa breakfast bowl"],
+            "Cereal": ["Steel-cut oats", "Bran flakes", "Muesli"],
+            "Toast": ["Whole grain bread", "Sweet potato toast", "Avocado toast"],
+            "Pancakes": ["Protein pancakes", "Oatmeal pancakes", "Almond flour pancakes"],
+            "Yogurt": ["Greek yogurt", "Skyr yogurt", "Coconut yogurt"],
+            "Sandwich": ["Lettuce wrap", "Collard green wrap", "Portobello mushroom cap"],
+            "Pasta": ["Zucchini noodles", "Spaghetti squash", "Shirataki noodles"],
+            "Rice": ["Cauliflower rice", "Quinoa", "Bulgur"],
+            "Salad": ["Kale salad", "Spinach salad", "Arugula salad"],
+            "Soup": ["Bone broth soup", "Vegetable soup", "Chicken soup"],
+            "Pizza": ["Cauliflower crust pizza", "Portobello pizza", "Zucchini pizza"],
+            "Chicken": ["Grilled chicken", "Baked chicken", "Air-fried chicken"],
+            "Fish": ["Salmon", "Tuna", "Cod"],
+            "Beef": ["Lean beef", "Bison", "Venison"],
+            "Vegetables": ["Broccoli", "Spinach", "Kale"],
+            "Chips": ["Kale chips", "Zucchini chips", "Seaweed snacks"],
+            "Nuts": ["Almonds", "Walnuts", "Pecans"],
+            "Fruit": ["Berries", "Apples", "Pears"],
+            "Crackers": ["Seed crackers", "Nut crackers", "Vegetable crackers"],
+            "Cheese": ["Cottage cheese", "Ricotta", "Feta"],
+            "Ice Cream": ["Greek yogurt ice cream", "Coconut milk ice cream", "Protein ice cream"],
+            "Cake": ["Protein cake", "Almond flour cake", "Coconut flour cake"],
+            "Cookies": ["Protein cookies", "Almond flour cookies", "Coconut cookies"],
+            "Chocolate": ["Dark chocolate", "Sugar-free chocolate", "Cacao nibs"],
+            "Pudding": ["Chia pudding", "Protein pudding", "Coconut pudding"],
+            "Soda": ["Sparkling water", "Herbal tea", "Infused water"],
+            "Juice": ["Vegetable juice", "Green smoothie", "Water with lemon"],
+            "Milk": ["Almond milk", "Coconut milk", "Oat milk"],
+            "Water": ["Infused water", "Herbal tea", "Sparkling water"],
+            "Tea": ["Green tea", "Herbal tea", "Black tea"]
+        };
+
+        function updateNutritionRecommendations() {
+            const category = document.getElementById('foodCategory').value;
+            const foodSelect = document.getElementById('foodItem');
+            const recommendationsDiv = document.getElementById('nutritionRecommendations');
+            
+            // Clear previous options
+            foodSelect.innerHTML = '<option value="">Select a food item...</option>';
+            
+            if (category && nutritionData[category]) {
+                // Populate food items
+                Object.keys(nutritionData[category]).forEach(function(food) {
+                    const option = document.createElement('option');
+                    option.value = food;
+                    option.textContent = food;
+                    foodSelect.appendChild(option);
+                });
+                
+                // Show general recommendations for the category
+                let recommendations = '';
+                if (category === 'breakfast') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Breakfast Tips</h6><p>• Include protein to stabilize blood sugar<br>• Choose whole grains over refined carbs<br>• Add healthy fats like nuts or avocado</p></div>';
+                } else if (category === 'lunch') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Lunch Tips</h6><p>• Balance carbs with protein and fiber<br>• Include vegetables for nutrients<br>• Avoid high-glycemic foods</p></div>';
+                } else if (category === 'dinner') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Dinner Tips</h6><p>• Focus on protein and vegetables<br>• Limit carbs in the evening<br>• Choose lean protein sources</p></div>';
+                } else if (category === 'snacks') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Snack Tips</h6><p>• Choose protein-rich snacks<br>• Include fiber for satiety<br>• Avoid sugary snacks</p></div>';
+                } else if (category === 'desserts') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Dessert Tips</h6><p>• Choose sugar-free alternatives<br>• Include protein in desserts<br>• Limit portion sizes</p></div>';
+                } else if (category === 'beverages') {
+                    recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Beverage Tips</h6><p>• Choose water or unsweetened drinks<br>• Avoid sugary beverages<br>• Consider herbal teas</p></div>';
+                }
+                
+                recommendationsDiv.innerHTML = recommendations;
+            } else {
+                recommendationsDiv.innerHTML = '<p class="text-muted">Select a food category to see personalized recommendations.</p>';
+            }
+        }
+
+        function updateNutritionAlternatives() {
+            const foodItem = document.getElementById('foodItem').value;
+            const alternativesDiv = document.getElementById('nutritionAlternatives');
+            
+            if (foodItem && alternatives[foodItem]) {
+                let alternativesHtml = '<h6 class="text-info mb-3">Healthier Alternatives:</h6>';
+                alternatives[foodItem].forEach(function(alt) {
+                    alternativesHtml += '<div class="food-alternative"><h6>' + alt + '</h6><p><i class="fas fa-check text-success me-2"></i>Lower glycemic impact</p></div>';
+                });
+                alternativesDiv.innerHTML = alternativesHtml;
+            } else {
+                alternativesDiv.innerHTML = '<p class="text-muted">Choose a food item to see healthier alternatives.</p>';
+            }
+        }
+
+        function quickAddFood(foodName, carbs) {
+            // Set the food item
+            document.getElementById('foodItem').value = foodName;
+            
+            // Update nutrition analysis
+            updateNutritionAnalysis();
+            
+            // Show success message
+            showNotification(`Added ${foodName} to your meal analysis!`, 'success');
+        }
+        
+        function updateNutritionAnalysis() {
+            const foodItem = document.getElementById('foodItem').value;
+            const category = document.getElementById('foodCategory').value;
+            const quantity = parseFloat(document.getElementById('foodQuantity').value) || 1;
+            
+            if (foodItem && category && nutritionData[category] && nutritionData[category][foodItem]) {
+                const nutrition = nutritionData[category][foodItem];
+                
+                // Calculate adjusted values based on quantity
+                const adjustedCarbs = nutrition.carbs * quantity;
+                const adjustedProtein = nutrition.protein * quantity;
+                const adjustedFat = nutrition.fat * quantity;
+                const adjustedFiber = nutrition.fiber * quantity;
+                
+                // Update nutrition summary
+                document.getElementById('currentCarbs').textContent = adjustedCarbs;
+                document.getElementById('currentProtein').textContent = adjustedProtein;
+                document.getElementById('currentFat').textContent = adjustedFat;
+                document.getElementById('currentFiber').textContent = adjustedFiber;
+                
+                // Update progress bars
+                updateProgressBars(adjustedCarbs, adjustedProtein, adjustedFat, adjustedFiber);
+                
+                // Update blood sugar impact
+                const bloodSugarImpact = Math.round(adjustedCarbs * 2.5);
+                document.getElementById('bloodSugarImpact').textContent = bloodSugarImpact + ' mg/dL';
+                
+                // Update glycemic indicator
+                updateGlycemicIndicator(nutrition.glycemic, adjustedCarbs);
+                
+                // Update meal size in simulation
+                document.getElementById('mealSize').value = adjustedCarbs;
+                
+                // Auto-update simulation
+                updateScenario();
+            }
+        }
+        
+        function updateProgressBars(carbs, protein, fat, fiber) {
+            // Set progress bar widths (normalized to reasonable ranges)
+            const carbsPercent = Math.min((carbs / 100) * 100, 100);
+            const proteinPercent = Math.min((protein / 50) * 100, 100);
+            const fatPercent = Math.min((fat / 50) * 100, 100);
+            const fiberPercent = Math.min((fiber / 25) * 100, 100);
+            
+            document.getElementById('carbsProgress').style.width = carbsPercent + '%';
+            document.getElementById('proteinProgress').style.width = proteinPercent + '%';
+            document.getElementById('fatProgress').style.width = fatPercent + '%';
+            document.getElementById('fiberProgress').style.width = fiberPercent + '%';
+        }
+        
+        function updateGlycemicIndicator(glycemic, carbs) {
+            const alertDiv = document.getElementById('glycemicAlert');
+            const textSpan = document.getElementById('glycemicText');
+            
+            alertDiv.style.display = 'block';
+            
+            if (glycemic === 'low') {
+                alertDiv.className = 'alert alert-success';
+                textSpan.innerHTML = `<strong>Low Glycemic Impact!</strong> This food should help maintain stable blood sugar levels.`;
+            } else if (glycemic === 'medium') {
+                alertDiv.className = 'alert alert-warning';
+                textSpan.innerHTML = `<strong>Moderate Impact:</strong> Monitor your blood sugar after consuming ${carbs}g of carbs.`;
+            } else if (glycemic === 'high') {
+                alertDiv.className = 'alert alert-danger';
+                textSpan.innerHTML = `<strong>High Impact Warning!</strong> This food may cause rapid blood sugar spikes. Consider smaller portions or alternatives.`;
+            }
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification-toast`;
+            notification.innerHTML = `
+                <i class="fas fa-info-circle me-2"></i>
+                ${message}
+                <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+        
+        function analyzeNutrition() {
+            const foodItem = document.getElementById('foodItem').value;
+            const category = document.getElementById('foodCategory').value;
+            
+            if (foodItem && category && nutritionData[category] && nutritionData[category][foodItem]) {
+                updateNutritionAnalysis();
+                
+                // Show impact analysis
+                const recommendationsDiv = document.getElementById('nutritionRecommendations');
+                const nutrition = nutritionData[category][foodItem];
+                const quantity = parseFloat(document.getElementById('foodQuantity').value) || 1;
+                const adjustedCarbs = nutrition.carbs * quantity;
+                
+                let impactAnalysis = `
+                    <div class="nutrition-tip">
+                        <h6><i class="fas fa-chart-line me-2"></i>Blood Sugar Impact Analysis</h6>
+                        <p>• <strong>${foodItem}</strong> has ${adjustedCarbs}g carbs<br>
+                        • Glycemic index: <strong>${nutrition.glycemic}</strong><br>
+                        • Estimated glucose rise: <strong>${Math.round(adjustedCarbs * 2.5)} mg/dL</strong><br>
+                        • Protein: ${nutrition.protein * quantity}g | Fat: ${nutrition.fat * quantity}g | Fiber: ${nutrition.fiber * quantity}g</p>
+                    </div>
+                `;
+                
+                if (nutrition.glycemic === 'high') {
+                    impactAnalysis += `
+                        <div class="nutrition-tip" style="background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>High Impact Warning</h6>
+                            <p>This food may cause rapid blood sugar spikes. Consider alternatives or smaller portions.</p>
+                        </div>
+                    `;
+                } else if (nutrition.glycemic === 'low') {
+                    impactAnalysis += `
+                        <div class="nutrition-tip" style="background: linear-gradient(135deg, #28A745 0%, #20B2AA 100%);">
+                            <h6><i class="fas fa-thumbs-up me-2"></i>Good Choice!</h6>
+                            <p>This food has a low glycemic impact and should help maintain stable blood sugar.</p>
+                        </div>
+                    `;
+                }
+                
+                recommendationsDiv.innerHTML = impactAnalysis;
+                
+                showNotification(`Analyzed ${foodItem} - ${adjustedCarbs}g carbs`, 'success');
+            } else {
+                showNotification('Please select a food item first', 'warning');
+            }
+        }
+        
+        // Voice Food Logging Functions
+        let isListening = false;
+        
+        function startVoiceLogging() {
+            if (isListening) {
+                stopVoiceLogging();
+                return;
+            }
+            
+            isListening = true;
+            const btn = document.getElementById('voiceLogBtn');
+            const statusDiv = document.getElementById('voiceStatus');
+            const statusText = document.getElementById('voiceStatusText');
+            
+            btn.innerHTML = '<i class="fas fa-stop me-2"></i>Stop Voice Logging';
+            btn.className = 'btn btn-danger w-100 mb-2';
+            statusDiv.style.display = 'block';
+            statusText.textContent = 'Listening for food input...';
+            
+            // Call the voice logging endpoint
+            fetch('/voice_log_food', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    statusText.textContent = data.message;
+                    statusDiv.className = 'alert alert-success';
+                    
+                    // Update meal size if carbs were logged
+                    if (data.total_carbs > 0) {
+                        document.getElementById('mealSize').value = data.total_carbs;
+                        
+                        // Update nutrition analysis with voice-logged foods
+                        updateNutritionFromVoiceLog(data.foods);
+                        
+                        updateScenario();
+                    }
+                    
+                    // Show food log
+                    loadFoodLog();
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        stopVoiceLogging();
+                    }, 3000);
+                } else {
+                    statusText.textContent = 'Error: ' + data.error;
+                    statusDiv.className = 'alert alert-danger';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusText.textContent = 'Error: Could not connect to voice service';
+                statusDiv.className = 'alert alert-danger';
+            });
+        }
+        
+        function stopVoiceLogging() {
+            isListening = false;
+            const btn = document.getElementById('voiceLogBtn');
+            const statusDiv = document.getElementById('voiceStatus');
+            
+            btn.innerHTML = '<i class="fas fa-microphone me-2"></i>Start Voice Logging';
+            btn.className = 'btn btn-warning w-100 mb-2';
+            statusDiv.style.display = 'none';
+        }
+        
+        function loadFoodLog() {
+            fetch('/get_food_log')
+            .then(response => response.json())
+            .then(data => {
+                const logDisplay = document.getElementById('foodLogDisplay');
+                const logContent = document.getElementById('foodLogContent');
+                const totalCarbs = document.getElementById('totalCarbs24h');
+                
+                if (data.recent_foods && data.recent_foods.length > 0) {
+                    let logHtml = '';
+                    data.recent_foods.slice(-5).reverse().forEach(food => {
+                        const time = new Date(food.timestamp).toLocaleTimeString();
+                        logHtml += `
+                            <div class="food-log-entry">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><strong>${food.food_name}</strong> (${food.quantity} ${food.unit})</span>
+                                    <span class="text-primary">${food.carbs}g carbs</span>
+                                </div>
+                                <small class="text-muted">${time}</small>
+                            </div>
+                        `;
+                    });
+                    logContent.innerHTML = logHtml;
+                    totalCarbs.textContent = data.total_carbs_24h;
+                    logDisplay.style.display = 'block';
+                } else {
+                    logContent.innerHTML = '<p class="text-muted">No food logged yet.</p>';
+                    totalCarbs.textContent = '0';
+                    logDisplay.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading food log:', error);
+            });
+        }
+        
+        function clearFoodLog() {
+            if (confirm('Are you sure you want to clear the food log?')) {
+                fetch('/clear_food_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('foodLogDisplay').style.display = 'none';
+                        alert('Food log cleared successfully');
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error clearing food log');
+                });
+            }
+        }
+        
+        function manualLogFood() {
+            const foodName = document.getElementById('manualFoodName').value.trim();
+            const quantity = parseFloat(document.getElementById('manualQuantity').value);
+            const unit = document.getElementById('manualUnit').value;
+            
+            if (!foodName) {
+                alert('Please enter a food name');
+                return;
+            }
+            
+            fetch('/manual_log_food', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    food_name: foodName,
+                    quantity: quantity,
+                    unit: unit
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    
+                    // Update meal size if carbs were logged
+                    if (data.total_carbs > 0) {
+                        document.getElementById('mealSize').value = data.total_carbs;
+                        updateScenario();
+                    }
+                    
+                    // Clear form
+                    document.getElementById('manualFoodName').value = '';
+                    document.getElementById('manualQuantity').value = '1';
+                    
+                    // Show food log
+                    loadFoodLog();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error logging food');
+            });
+        }
+        
+        function updateNutritionFromVoiceLog(foods) {
+            if (!foods || foods.length === 0) return;
+            
+            let totalCarbs = 0;
+            let totalProtein = 0;
+            let totalFat = 0;
+            let totalFiber = 0;
+            let foodNames = [];
+            
+            foods.forEach(food => {
+                totalCarbs += food.carbs * food.quantity;
+                totalProtein += (food.protein || 0) * food.quantity;
+                totalFat += (food.fat || 0) * food.quantity;
+                totalFiber += (food.fiber || 0) * food.quantity;
+                foodNames.push(food.name);
+            });
+            
+            // Update nutrition display
+            document.getElementById('currentCarbs').textContent = totalCarbs;
+            document.getElementById('currentProtein').textContent = totalProtein;
+            document.getElementById('currentFat').textContent = totalFat;
+            document.getElementById('currentFiber').textContent = totalFiber;
+            
+            // Update progress bars
+            updateProgressBars(totalCarbs, totalProtein, totalFat, totalFiber);
+            
+            // Update blood sugar impact
+            const bloodSugarImpact = Math.round(totalCarbs * 2.5);
+            document.getElementById('bloodSugarImpact').textContent = bloodSugarImpact + ' mg/dL';
+            
+            // Show glycemic indicator
+            const glycemicLevel = totalCarbs > 50 ? 'high' : totalCarbs > 25 ? 'medium' : 'low';
+            updateGlycemicIndicator(glycemicLevel, totalCarbs);
+            
+            // Show notification
+            const foodList = foodNames.join(', ');
+            showNotification(`Voice logged: ${foodList} (${totalCarbs}g carbs)`, 'success');
+        }
+        
+        // Load food log on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFoodLog();
+        });
     </script>
 </body>
 </html> 

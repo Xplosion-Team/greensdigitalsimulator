@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: t1d-simulator-voice
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: false
+      - key: PORT
+        value: 8080
+      - key: HOST
+        value: 0.0.0.0
+      - key: VOICE_ENABLED
+        value: true
+      - key: SPEECH_RECOGNITION_ENABLED
+        value: true
+      - key: TTS_ENABLED
+        value: false
+      - key: FLAC_PATH
+        value: /usr/bin/flac
+      - key: MICROPHONE_PERMISSIONS
+        value: enabled
+      - key: GOOGLE_SPEECH_API_KEY
+        value: ""
+      - key: FOOD_LOG_ENABLED
+        value: true
+      - key: NUTRITION_ANALYSIS_ENABLED
+        value: true
+      - key: SIMULATION_UPDATE_ENABLED
+        value: true
