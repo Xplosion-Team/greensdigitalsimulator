@@ -17,6 +17,16 @@ except ImportError as e:
     print(f"Warning: Could not import DigitalTwin: {e}")
     DIGITAL_TWIN_AVAILABLE = False
 
+# Import voice module
+try:
+    from voice_module import VoiceFoodLogger
+    VOICE_MODULE_AVAILABLE = True
+    voice_logger = VoiceFoodLogger()
+except ImportError as e:
+    print(f"Warning: Could not import VoiceFoodLogger: {e}")
+    VOICE_MODULE_AVAILABLE = False
+    voice_logger = None
+
 app = Flask(__name__)
 
 # Global variables
@@ -578,6 +588,99 @@ def get_animation_data():
     }
     
     return jsonify(animation_data)
+
+# Voice module routes
+@app.route('/voice_log_food', methods=['POST'])
+def voice_log_food():
+    """Voice log food intake"""
+    if not VOICE_MODULE_AVAILABLE:
+        return jsonify({'error': 'Voice module not available'}), 500
+    
+    try:
+        # This would typically be called from a background thread
+        # For now, we'll simulate the voice input
+        result = voice_logger.voice_log_food()
+        
+        if result:
+            total_carbs = sum(food['carbs'] * food['quantity'] for food in result)
+            return jsonify({
+                'success': True,
+                'foods': result,
+                'total_carbs': total_carbs,
+                'message': f'Logged {len(result)} food items with {total_carbs} grams of carbohydrates'
+            })
+        else:
+            return jsonify({'error': 'No food detected'}), 400
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/get_food_log')
+def get_food_log():
+    """Get recent food log entries"""
+    if not VOICE_MODULE_AVAILABLE:
+        return jsonify({'error': 'Voice module not available'}), 500
+    
+    try:
+        recent_foods = voice_logger.get_recent_foods(limit=10)
+        total_carbs_24h = voice_logger.get_total_carbs(hours=24)
+        
+        return jsonify({
+            'recent_foods': recent_foods,
+            'total_carbs_24h': total_carbs_24h
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/clear_food_log', methods=['POST'])
+def clear_food_log():
+    """Clear the food log"""
+    if not VOICE_MODULE_AVAILABLE:
+        return jsonify({'error': 'Voice module not available'}), 500
+    
+    try:
+        voice_logger.clear_food_log()
+        return jsonify({'success': True, 'message': 'Food log cleared'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/manual_log_food', methods=['POST'])
+def manual_log_food():
+    """Manually log food intake"""
+    if not VOICE_MODULE_AVAILABLE:
+        return jsonify({'error': 'Voice module not available'}), 500
+    
+    try:
+        data = request.get_json()
+        food_name = data.get('food_name', '').lower()
+        quantity = float(data.get('quantity', 1))
+        unit = data.get('unit', 'serving')
+        
+        # Find food in database
+        if food_name in voice_logger.food_database:
+            food_info = voice_logger.food_database[food_name]
+            food_item = {
+                'name': food_name,
+                'carbs': food_info['carbs'],
+                'category': food_info['category'],
+                'quantity': quantity,
+                'unit': unit
+            }
+            
+            logged_foods = voice_logger.log_food([food_item])
+            total_carbs = sum(food['carbs'] * food['quantity'] for food in logged_foods)
+            
+            return jsonify({
+                'success': True,
+                'foods': logged_foods,
+                'total_carbs': total_carbs,
+                'message': f'Logged {food_name} with {total_carbs} grams of carbohydrates'
+            })
+        else:
+            return jsonify({'error': f'Food "{food_name}" not found in database'}), 400
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     print("Starting Greens Health Simulator...")

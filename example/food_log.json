@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2025-08-21T19:14:25.608040",
+    "food_name": "apple",
+    "carbs": 50,
+    "category": "fruit",
+    "quantity": 2,
+    "unit": "piece"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:34.826493",
+    "food_name": "apple",
+    "carbs": 25,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:34.826493",
+    "food_name": "banana",
+    "carbs": 27,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:34.826493",
+    "food_name": "orange",
+    "carbs": 15,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:52.930022",
+    "food_name": "apple",
+    "carbs": 25,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:52.930022",
+    "food_name": "banana",
+    "carbs": 27,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:15:52.930022",
+    "food_name": "orange",
+    "carbs": 15,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:16:07.526696",
+    "food_name": "pizza",
+    "carbs": 30,
+    "category": "fast_food",
+    "quantity": 1,
+    "unit": "serving"
+  },
+  {
+    "timestamp": "2025-08-21T19:19:29.246412",
+    "food_name": "apple",
+    "carbs": 25,
+    "category": "fruit",
+    "quantity": 1,
+    "unit": "serving"
+  }
+]
