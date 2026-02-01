@@ -12,6 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 # Import with error handling
 try:
     from t1dsim_ai.individual_model import DigitalTwin
+    from t1dsim_ai.brains import BrainOrchestrator
     DIGITAL_TWIN_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Could not import DigitalTwin: {e}")
@@ -22,8 +23,8 @@ try:
     from voice_module import VoiceFoodLogger
     VOICE_MODULE_AVAILABLE = True
     voice_logger = VoiceFoodLogger()
-except ImportError as e:
-    print(f"Warning: Could not import VoiceFoodLogger: {e}")
+except Exception as e:
+    print(f"Warning: Could not initialize VoiceFoodLogger: {e}")
     VOICE_MODULE_AVAILABLE = False
     voice_logger = None
 
@@ -44,6 +45,12 @@ scenario_params = {
     'meal_time': 60,
     'heart_rate': 70
 }
+
+# Initialize Brain
+brain_orchestrator = BrainOrchestrator(
+    provider="mock", 
+    digital_twin_id=current_digital_twin
+)
 
 def load_patient_data(digital_twin_id):
     """Load real patient data from the data files"""
@@ -680,6 +687,30 @@ def manual_log_food():
             return jsonify({'error': f'Food "{food_name}" not found in database'}), 400
             
     except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/brain/query', methods=['POST'])
+def brain_query():
+    """Process a natural language query via the Brain engine"""
+    try:
+        data = request.get_json()
+        user_query = data.get('query', '')
+        
+        if not user_query:
+            return jsonify({'error': 'No query provided'}), 400
+            
+        # Run the brain loop
+        # For simplicity in prototype, we use the current scenario's init_cgm or 110
+        start_glucose = scenario_params.get('init_cgm', 110)
+        
+        # Ensure orchestrator is using correct twin
+        brain_orchestrator.digital_twin_id = current_digital_twin
+        
+        result = brain_orchestrator.query(user_query, start_glucose)
+        return jsonify(result)
+        
+    except Exception as e:
+        print(f"Brain query error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':

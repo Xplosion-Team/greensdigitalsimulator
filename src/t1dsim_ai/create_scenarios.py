@@ -20,9 +20,6 @@ def digitalTwin_scenario(
     exercise_duration=0.5,
 ):
     np.random.seed(0)
-    dfInitStates = pd.read_csv(
-        Path(__file__).parent / "models/initSteadyStates.csv"
-    ).set_index("initCGM")
 
     base_date = datetime.datetime(2024, 8, 15)
     (h, m, s) = initial_time.split(":")
@@ -35,14 +32,15 @@ def digitalTwin_scenario(
         freq="5 min",
     )
 
+    df_scenario.index = np.arange(len(df_scenario))
     df_scenario[states + inputs + input_ind] = 0.0
     df_scenario["feat_hour_of_day_cos"] = np.cos(
         2 * np.pi * df_scenario["time"].dt.hour / 24
     )
-    df_scenario["feat_hour_of_day_cos"] = np.sin(
+    df_scenario["feat_hour_of_day_sin"] = np.sin(
         2 * np.pi * df_scenario["time"].dt.hour / 24
     )
-    df_scenario.loc[0, "cgm"] = init_cgm
+    df_scenario.loc[0, "output_cgm"] = init_cgm
     df_scenario.loc[
         np.array(meal_time_fromStart_array) // 5, "input_meal_carbs"
     ] = meal_size_array
@@ -54,14 +52,16 @@ def digitalTwin_scenario(
 
     df_scenario["heart_rate"] = hr + np.random.normal(0, 2, len(df_scenario))
 
-    df_scenario.loc[0, states] = dfInitStates.loc[int(init_cgm), states]
-
-    df_scenario.loc[
-        bedtime // 5 : (bedtime + sleep_duration * 60) // 5, "sleep_efficiency"
-    ] = 1
-    df_scenario.loc[
-        bedtime // 5 : (bedtime + sleep_duration * 60) // 5, "heart_rate"
-    ] = (hr - 10 + np.random.normal(0, 1, sleep_duration * 12 + 1))
+    # Only assign to indices that exist in the dataframe
+    sleep_idx_start = max(0, bedtime // 5)
+    sleep_idx_end = min(len(df_scenario) - 1, (bedtime + sleep_duration * 60) // 5)
+    
+    if sleep_idx_start < len(df_scenario):
+        n_sleep_points = sleep_idx_end - sleep_idx_start + 1
+        df_scenario.loc[sleep_idx_start:sleep_idx_end, "sleep_efficiency"] = 1
+        df_scenario.loc[sleep_idx_start:sleep_idx_end, "heart_rate"] = (
+            hr - 10 + np.random.normal(0, 1, n_sleep_points)
+        )
 
     # df_scenario.loc[
     #    exercise_time // 5 : (exercise_time + exercise_duration * 60) // 5, "heart_rate"
