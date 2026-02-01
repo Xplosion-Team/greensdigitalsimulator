@@ -17,6 +17,11 @@ class BrainQueryRequest(BaseModel):
     provider: Optional[str] = Field(None, description="Override BRAIN_PROVIDER for this request")
 
 
+@app.get("/")
+def read_root() -> Dict[str, Any]:
+    return {"message": "Greens Digital Twin Brain API is running", "status": "ok"}
+
+
 @app.get("/health")
 def health() -> Dict[str, Any]:
     return {"ok": True}
