@@ -1,0 +1,9 @@
+Flask==3.0.3
+gunicorn==21.2.0
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.9.2
+
+# App Runner brain API runtime deps
+fastapi==0.115.8
+uvicorn[standard]==0.34.0
