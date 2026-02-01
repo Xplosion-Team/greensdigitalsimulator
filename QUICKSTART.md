@@ -9,10 +9,19 @@ Get up and running with Greens Digital Simulator in 5 minutes!
 ```bash
 # Clone and install
 git clone https://github.com/Xplosion-Team/greensdigitalsimulator.git
-cd greensdigitalsimulator
+cd builtin/greensdigitalsimulator
+
+# Setup virtual environment (Mac/Linux)
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install the package and dependencies
 pip install -e .
 pip install -r requirments.txt
 ```
+
+> [!TIP]
+> Always ensure your virtual environment is active (`source .venv/bin/activate`) before running any commands!
 
 ---
 
@@ -27,10 +36,10 @@ python runDigitalTwin.py
 
 **What happens?**
 - Loads a pre-trained digital twin
-- Simulates 24 hours of glucose dynamics
-- Generates a visualization saved to `img/`
+- Simulates 24 hours of glucose dynamics using `data_example/data_example.csv`
+- Generates a 500 DPI visualization saved to `img/example_digitaltwin4.png`
 
-**Output**: A chart showing glucose predictions vs actual CGM data!
+**Output**: A high-quality chart showing glucose predictions vs actual CGM data!
 
 ---
 
@@ -60,7 +69,7 @@ from t1dsim_ai.individual_model import DigitalTwin
 import pandas as pd
 
 # Load sample data
-data = pd.read_csv("example/data_example/data_example.csv")
+data = pd.read_csv("data_example/data_example.csv")
 data = data[~data.is_train].head(288)  # 24 hours
 
 # Try different digital twins (0-4)
@@ -132,10 +141,22 @@ print(f"Time to peak: {results.cgm_NNDT.idxmax() * 5} minutes")
 
 ### Import Error: "No module named 't1dsim_ai'"
 
-**Solution**: Make sure you installed the package:
+**Solution**: Make sure you installed the package in editable mode:
 ```bash
 pip install -e .
 ```
+
+### Import Error: "No module named 'torch'" or "'librosa'"
+
+**Solution**: Ensure you installed the latest dependencies:
+```bash
+pip install -e .
+```
+(We've added these to the core `pyproject.toml` dependencies).
+
+### FileNotFoundError: "data_example/data_example.csv"
+
+**Solution**: Ensure you are in the `example/` directory when running `runDigitalTwin.py`.
 
 ### Port 5000 Already in Use
 

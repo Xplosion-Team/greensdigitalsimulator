@@ -5,7 +5,7 @@ from t1dsim_ai.individual_model import DigitalTwin
 import numpy as np
 import matplotlib.pyplot as plt
 
-df_simulation = pd.read_csv("example_model/data_example.csv")
+df_simulation = pd.read_csv("data_example/data_example.csv")
 df_simulation = df_simulation[~df_simulation.is_train]
 
 # MODIFY THIS: Choose different digital twin model

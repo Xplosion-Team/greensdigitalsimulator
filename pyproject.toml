@@ -1,9 +1,69 @@
-#!/usr/bin/env bash
-# exit on error
-set -o errexit
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
 
-# Install the package in development mode
-pip install -e .
+[project]
+name = "t1dsim-ai"
+version = "0.1.0"
+description = "Digital Twin Glucose-Insulin Simulator for Type 1 Diabetes"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Greens Health Team", email = "info@greenshealth.com"}
+]
+keywords = ["diabetes", "glucose", "digital-twin", "simulation", "healthcare"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
 
-# Install additional requirements
-pip install -r requirements.txt
+dependencies = [
+    "numpy>=1.20.0",
+    "pandas>=1.3.0",
+    "scipy>=1.7.0",
+    "torch>=2.0.0",
+    "librosa>=0.10.0",
+    "matplotlib>=3.4.0",
+    "scikit-learn>=0.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.12",
+    "black>=21.0",
+    "flake8>=3.9",
+    "mypy>=0.910",
+]
+
+web = [
+    "flask>=2.0.0",
+    "flask-cors>=3.0.0",
+]
+
+voice = [
+    "SpeechRecognition>=3.8.0",
+    "pyaudio>=0.2.11",
+    "openai>=0.27.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Xplosion-Team/greensdigitalsimulator"
+Documentation = "https://github.com/Xplosion-Team/greensdigitalsimulator/blob/main/README.md"
+Repository = "https://github.com/Xplosion-Team/greensdigitalsimulator"
+Issues = "https://github.com/Xplosion-Team/greensdigitalsimulator/issues"
+
+[tool.setuptools]
+packages = ["t1dsim_ai"]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+t1dsim_ai = ["*.pkl", "*.json", "*.csv"]
