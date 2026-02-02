@@ -9,5 +9,5 @@ run:
   command: python3 -m uvicorn api.main:app --host 0.0.0.0 --port 8080
   network:
     port: 8080
-    env:
-      PYTHONPATH: src
+  env:
+    PYTHONPATH: src
