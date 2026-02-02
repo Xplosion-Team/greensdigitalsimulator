@@ -78,6 +78,11 @@ class BrainOrchestrator:
         sanitized_summary = BrainSanitizer.summarize_simulation(results, params, current_glucose)
 
         # 4) Explain (provider chain)
-        explanation = self.provider.generate_explanation(sanitized_summary)
+        try:
+            explanation = self.provider.generate_explanation(sanitized_summary)
+        except Exception as e:
+            # If AI fails, use the hardcoded mock explanation as a safety net
+            explanation = MockBrainProvider().generate_explanation(sanitized_summary)
+            explanation = f"[AI Error: {e}] {explanation}"
 
         return {"success": True, "explanation": explanation, "summary_stats": sanitized_summary}
