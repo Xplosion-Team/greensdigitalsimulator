@@ -13,13 +13,22 @@ class MockBrainProvider(BrainProvider):
 
     def parse_intent(self, query: str) -> Optional[Dict[str, Any]]:
         query = query.lower()
+        # Look for carb amounts (e.g., "50g", "40 grams")
         carbs_match = re.search(r"(\d+)\s*g", query)
         if not carbs_match:
             carbs_match = re.search(r"(\d+)\s*(grams|carbs)", query)
 
-        if "eat" in query or carbs_match:
-            carbs = int(carbs_match.group(1)) if carbs_match else 40
+        # Meal Intent: Look for "eat", "ate", "eating", "snack", "meal", "pizza", etc.
+        meal_keywords = ["eat", "ate", "eating", "snack", "meal", "pizza", "carbs", "food"]
+        if any(kw in query for kw in meal_keywords) or carbs_match:
+            carbs = int(carbs_match.group(1)) if carbs_match else 45
             return {"type": "meal", "carbs": carbs, "time_offset": 30}
+
+        # Exercise Intent: Look for "walk", "exercise", "run", "gym", "workout"
+        exercise_keywords = ["walk", "exercise", "run", "gym", "workout", "active"]
+        if any(kw in query for kw in exercise_keywords):
+            return {"type": "exercise", "intensity": "moderate", "duration": 30}
+
         return None
 
     def generate_explanation(self, context: Dict[str, Any]) -> str:
