@@ -6,6 +6,7 @@ from ..create_scenarios import digitalTwin_scenario
 from .providers import (
     MockBrainProvider,
     OpenAIProvider,
+    GroqProvider,
     OllamaProvider,
     FallbackBrainProvider,
     build_provider_chain,
