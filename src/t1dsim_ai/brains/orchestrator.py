@@ -40,6 +40,8 @@ class BrainOrchestrator:
 
         if provider == "openai":
             self.provider = OpenAIProvider(api_key=api_key)
+        elif provider == "groq":
+            self.provider = GroqProvider(api_key=api_key)
         elif provider == "ollama":
             self.provider = OllamaProvider(model=ollama_model or "phi3:latest", base_url=ollama_base)
         elif provider == "fallback":

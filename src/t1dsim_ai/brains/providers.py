@@ -71,11 +71,53 @@ class OpenAIProvider(BrainProvider):
         import openai
 
         openai.api_key = self.api_key
+        openai.api_base = "https://api.openai.com/v1"
 
         prompt = (
             "You are Greens Health's assistant. Write a short, calm, senior-friendly explanation. "
             "Avoid medical diagnosis. Do not mention HIPAA. Use simple words.\n\n"
             f"Sanitized simulation summary (no PHI): {json.dumps(context)}\n\n"
+            "Reply in 2-4 sentences."
+        )
+
+        resp = openai.ChatCompletion.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": "You are a helpful diabetes education assistant."},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.4,
+        )
+        return resp["choices"][0]["message"]["content"].strip()
+
+
+class GroqProvider(BrainProvider):
+    """Groq provider (OpenAI-compatible)."""
+
+    def __init__(
+        self,
+        api_key: Optional[str] = None,
+        model: Optional[str] = None,
+    ):
+        self.api_key = api_key or os.getenv("GROQ")
+        self.model = model or os.getenv("BRAIN_GROQ_MODEL", "llama-3.3-70b-versatile")
+
+    def parse_intent(self, query: str) -> Optional[Dict[str, Any]]:
+        return MockBrainProvider().parse_intent(query)
+
+    def generate_explanation(self, context: Dict[str, Any]) -> str:
+        if not self.api_key:
+            raise RuntimeError("GROQ environment variable not set")
+
+        import openai
+
+        openai.api_key = self.api_key
+        openai.api_base = "https://api.groq.com/openai/v1"
+
+        prompt = (
+            "You are Greens Health's assistant. Write a short, calm, senior-friendly explanation. "
+            "Avoid medical diagnosis. Use simple words.\n\n"
+            f"Sanitized simulation summary: {json.dumps(context)}\n\n"
             "Reply in 2-4 sentences."
         )
 
@@ -158,15 +200,19 @@ class FallbackBrainProvider(BrainProvider):
 def build_provider_chain(
     *,
     openai_first: bool = True,
+    groq_enabled: bool = True,
     ollama_models: Optional[List[str]] = None,
 ) -> FallbackBrainProvider:
-    """Default chain: OpenAI → Ollama(phi3) → Ollama(qwen) → Mock."""
+    """Default chain: OpenAI → Groq → Ollama → Mock."""
 
     ollama_models = ollama_models or ["phi3:latest", "qwen2.5-coder:7b"]
     chain: List[Tuple[str, BrainProvider]] = []
 
     if openai_first:
         chain.append(("openai", OpenAIProvider()))
+
+    if groq_enabled:
+        chain.append(("groq", GroqProvider()))
 
     for m in ollama_models:
         chain.append((f"ollama:{m}", OllamaProvider(model=m)))
