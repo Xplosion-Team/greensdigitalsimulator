@@ -99,7 +99,7 @@ class GroqProvider(BrainProvider):
         api_key: Optional[str] = None,
         model: Optional[str] = None,
     ):
-        self.api_key = api_key or os.getenv("GROQ")
+        self.api_key = api_key or os.getenv("groq") or os.getenv("GROQ")
         self.model = model or os.getenv("BRAIN_GROQ_MODEL", "llama-3.3-70b-versatile")
 
     def parse_intent(self, query: str) -> Optional[Dict[str, Any]]:
