@@ -1,9 +1,14 @@
-Flask==3.0.3
+Flask==2.3.3
+numpy==1.24.3
+pandas==2.0.3
+plotly==5.17.0
+torch==2.0.1
+scikit-learn==1.3.0
+librosa==0.10.0
+Werkzeug==2.3.7
 gunicorn==21.2.0
-pandas==2.2.2
-numpy==1.26.4
-matplotlib==3.9.2
-
-# App Runner brain API runtime deps
+requests==2.31.0
+python-dotenv==1.0.0
 fastapi==0.115.8
 uvicorn[standard]==0.34.0
+.
