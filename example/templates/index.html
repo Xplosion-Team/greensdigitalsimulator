@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -412,12 +413,12 @@
             font-size: 12px;
             margin-bottom: 5px;
         }
-        
+
         /* Voice Module Styles */
         .voice-controls {
             margin-bottom: 15px;
         }
-        
+
         .food-log-entry {
             background: var(--white);
             border-radius: 8px;
@@ -426,51 +427,59 @@
             border-left: 3px solid var(--primary-green);
             box-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);
         }
-        
+
         .food-log-entry:hover {
             box-shadow: 0 4px 8px rgba(46, 139, 87, 0.15);
             transform: translateY(-1px);
             transition: all 0.2s ease;
         }
-        
+
         .manual-entry {
             background: var(--light-green);
             border-radius: 10px;
             padding: 15px;
             border: 1px solid var(--accent-green);
         }
-        
+
         .voice-status {
             border-radius: 10px;
             padding: 12px;
             margin-top: 10px;
         }
-        
+
         .voice-status.listening {
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             color: var(--white);
             animation: pulse 1.5s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
+
         /* Enhanced Nutrition Analysis Styles */
         .quick-add-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
         }
-        
+
         .quick-add-buttons .btn {
             font-size: 12px;
             padding: 4px 8px;
             border-radius: 15px;
         }
-        
+
         .impact-card {
             background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
             color: var(--white);
@@ -479,13 +488,13 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
         }
-        
+
         .impact-value {
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
         }
-        
+
         .nutrition-card {
             background: var(--white);
             border-radius: 12px;
@@ -495,55 +504,55 @@
             border: 1px solid var(--accent-green);
             transition: all 0.3s ease;
         }
-        
+
         .nutrition-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(46, 139, 87, 0.2);
         }
-        
+
         .nutrition-card h6 {
             color: var(--dark-green);
             font-size: 12px;
             margin-bottom: 8px;
         }
-        
+
         .nutrition-card span {
             font-size: 18px;
             font-weight: bold;
             color: var(--primary-green);
         }
-        
+
         .progress {
             background-color: rgba(46, 139, 87, 0.1);
             border-radius: 10px;
         }
-        
+
         .progress-bar {
             border-radius: 10px;
             transition: width 0.5s ease;
         }
-        
+
         .glycemic-indicator .alert {
             border-radius: 10px;
             border: none;
             font-size: 12px;
         }
-        
+
         .glycemic-indicator .alert-success {
             background: linear-gradient(135deg, #28A745 0%, #20B2AA 100%);
             color: white;
         }
-        
+
         .glycemic-indicator .alert-warning {
             background: linear-gradient(135deg, #FFC107 0%, #FFA500 100%);
             color: white;
         }
-        
+
         .glycemic-indicator .alert-danger {
             background: linear-gradient(135deg, #DC3545 0%, #FF6347 100%);
             color: white;
         }
-        
+
         /* Notification Toast */
         .notification-toast {
             position: fixed;
@@ -555,12 +564,13 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: slideIn 0.3s ease;
         }
-        
+
         @keyframes slideIn {
             from {
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -585,12 +595,216 @@
             visibility: visible;
         }
 
-        /* Add Plotly container styling */
-        #plotlyContainer {
-            width: 100%;
-            height: 600px;
-            border-radius: 15px;
+        /* Digital Twin Chat Terminal Styles */
+        .chat-terminal-bubble {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 1001;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-terminal-bubble:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .chat-terminal-bubble .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ff4757;
+            border: 2px solid white;
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            left: 25px;
+            width: 380px;
+            height: 550px;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            z-index: 1001;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(46, 139, 87, 0.3);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .chat-window.open {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            background: rgba(46, 139, 87, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h6 {
+            margin: 0;
+            color: var(--accent-green);
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-header .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px #2ecc71;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(46, 139, 87, 0.3);
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            border-bottom-left-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: white;
+            border-bottom-right-radius: 2px;
+            box-shadow: 0 4px 15px rgba(46, 139, 87, 0.2);
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 8px 15px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-send {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-send:hover {
+            background: var(--secondary-green);
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            font-size: 12px;
+            color: var(--gray-medium);
+            margin-bottom: 5px;
+            display: none;
+        }
+
+        /* Simulation Log Style for AI responses */
+        .simulation-log {
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #a0a0a0;
+            border: 1px solid rgba(46, 139, 87, 0.2);
+        }
+
+        .log-item {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .log-success {
+            color: #2ecc71;
+        }
+
+        .log-info {
+            color: #3498db;
         }
 
         /* Responsive improvements */
@@ -599,13 +813,14 @@
                 margin: 10px;
                 padding: 20px;
             }
-            
+
             .card {
                 margin-bottom: 15px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Side Menu Toggle Button -->
     <button class="side-menu-toggle" onclick="toggleSideMenu()">
@@ -623,14 +838,14 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
+
         <!-- Enhanced Food Selection -->
         <div class="mb-4">
             <h6 class="text-primary mb-3">
                 <i class="fas fa-utensils me-2"></i>
                 What are you planning to eat?
             </h6>
-            
+
             <!-- Quick Add Buttons -->
             <div class="mb-3">
                 <label class="parameter-label">Quick Add Common Foods</label>
@@ -649,7 +864,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <div class="mb-3">
                 <label class="parameter-label">Food Category</label>
                 <select class="form-select" id="foodCategory" onchange="updateNutritionRecommendations()">
@@ -668,13 +883,14 @@
                     <option value="">Select a food item...</option>
                 </select>
             </div>
-            
+
             <!-- Quantity and Portion Control -->
             <div class="mb-3">
                 <label class="parameter-label">Quantity & Portion</label>
                 <div class="row">
                     <div class="col-6">
-                        <input type="number" class="form-control" id="foodQuantity" value="1" min="0.1" step="0.1" onchange="updateNutritionAnalysis()">
+                        <input type="number" class="form-control" id="foodQuantity" value="1" min="0.1" step="0.1"
+                            onchange="updateNutritionAnalysis()">
                     </div>
                     <div class="col-6">
                         <select class="form-select" id="foodUnit" onchange="updateNutritionAnalysis()">
@@ -687,19 +903,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <button class="btn btn-success w-100" onclick="analyzeNutrition()">
                 <i class="fas fa-search me-2"></i>Analyze Nutrition Impact
             </button>
         </div>
-        
+
         <!-- Enhanced Current Meal Analysis -->
         <div class="mb-4">
             <h6 class="text-primary mb-3">
                 <i class="fas fa-chart-pie me-2"></i>
                 Current Meal Analysis
             </h6>
-            
+
             <!-- Blood Sugar Impact Prediction -->
             <div class="blood-sugar-impact mb-3">
                 <div class="impact-card">
@@ -708,7 +924,7 @@
                     <small class="text-muted">Based on current meal</small>
                 </div>
             </div>
-            
+
             <div class="nutrition-summary">
                 <div class="row">
                     <div class="col-6">
@@ -749,7 +965,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Glycemic Index Indicator -->
             <div class="glycemic-indicator mt-3">
                 <div class="alert" id="glycemicAlert" style="display: none;">
@@ -758,7 +974,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Smart Recommendations -->
         <div class="mb-4">
             <h6 class="text-success">
@@ -769,7 +985,7 @@
                 <p class="text-muted">Select a food category to see personalized recommendations.</p>
             </div>
         </div>
-        
+
         <!-- Healthier Alternatives -->
         <div class="mb-4">
             <h6 class="text-info">
@@ -780,7 +996,7 @@
                 <p class="text-muted">Choose a food item to see healthier alternatives.</p>
             </div>
         </div>
-        
+
         <!-- Voice Food Logging -->
         <div class="mb-4">
             <h6 class="text-warning">
@@ -798,7 +1014,7 @@
                     <i class="fas fa-trash me-2"></i>Clear Food Log
                 </button>
             </div>
-            
+
             <!-- Voice Status -->
             <div id="voiceStatus" class="mt-3" style="display: none;">
                 <div class="alert alert-info">
@@ -806,7 +1022,7 @@
                     <span id="voiceStatusText">Listening for food input...</span>
                 </div>
             </div>
-            
+
             <!-- Food Log Display -->
             <div id="foodLogDisplay" class="mt-3" style="display: none;">
                 <h6 class="text-primary">Recent Food Log</h6>
@@ -819,7 +1035,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Manual Food Entry -->
         <div class="mb-4">
             <h6 class="text-success">
@@ -828,11 +1044,13 @@
             </h6>
             <div class="manual-entry">
                 <div class="mb-2">
-                    <input type="text" class="form-control" id="manualFoodName" placeholder="Enter food name (e.g., apple, bread, rice)">
+                    <input type="text" class="form-control" id="manualFoodName"
+                        placeholder="Enter food name (e.g., apple, bread, rice)">
                 </div>
                 <div class="row mb-2">
                     <div class="col-6">
-                        <input type="number" class="form-control" id="manualQuantity" placeholder="Quantity" value="1" min="0.1" step="0.1">
+                        <input type="number" class="form-control" id="manualQuantity" placeholder="Quantity" value="1"
+                            min="0.1" step="0.1">
                     </div>
                     <div class="col-6">
                         <select class="form-select" id="manualUnit">
@@ -865,7 +1083,7 @@
                         <div class="attribution-section">
                             <small>
                                 <i class="fas fa-university me-1"></i>
-                                Powered by <strong>OHSU</strong> & <strong>Clara Mosquera-Lopez</strong>'s 
+                                Powered by <strong>OHSU</strong> & <strong>Clara Mosquera-Lopez</strong>'s
                                 <a href="https://github.com/mosqueralopez/T1DSim_AI" target="_blank">
                                     <i class="fab fa-github me-1"></i>Open Source T1D Digital Twin Framework
                                 </a>
@@ -902,7 +1120,8 @@
                                         <label class="parameter-label">
                                             <i class="fas fa-tint me-2"></i>Initial CGM (mg/dL)
                                         </label>
-                                        <input type="number" class="form-control" id="initCGM" value="{{ params.init_cgm }}" min="40" max="400" step="5">
+                                        <input type="number" class="form-control" id="initCGM"
+                                            value="{{ params.init_cgm }}" min="40" max="400" step="5">
                                     </div>
 
                                     <!-- Basal Insulin -->
@@ -910,7 +1129,8 @@
                                         <label class="parameter-label">
                                             <i class="fas fa-syringe me-2"></i>Basal Insulin (U/h)
                                         </label>
-                                        <input type="number" class="form-control" id="basalInsulin" value="{{ params.basal_insulin }}" min="0.1" max="10" step="0.1">
+                                        <input type="number" class="form-control" id="basalInsulin"
+                                            value="{{ params.basal_insulin }}" min="0.1" max="10" step="0.1">
                                     </div>
 
                                     <!-- Meal Size -->
@@ -918,7 +1138,8 @@
                                         <label class="parameter-label">
                                             <i class="fas fa-utensils me-2"></i>Meal Size (g carbs)
                                         </label>
-                                        <input type="number" class="form-control" id="mealSize" value="{{ params.meal_size }}" min="0" max="200" step="5">
+                                        <input type="number" class="form-control" id="mealSize"
+                                            value="{{ params.meal_size }}" min="0" max="200" step="5">
                                     </div>
 
                                     <!-- Meal Time -->
@@ -926,33 +1147,37 @@
                                         <label class="parameter-label">
                                             <i class="fas fa-clock me-2"></i>Meal Time (minutes)
                                         </label>
-                                        <input type="number" class="form-control" id="mealTime" value="{{ params.meal_time }}" min="0" max="300" step="5">
+                                        <input type="number" class="form-control" id="mealTime"
+                                            value="{{ params.meal_time }}" min="0" max="300" step="5">
                                     </div>
 
                                     <!-- Update Button -->
                                     <button class="btn btn-primary w-100" onclick="updateScenario()">
                                         <i class="fas fa-play me-2"></i>Run Simulation
                                     </button>
-                                    
+
                                     <!-- Animation Controls -->
                                     <div class="mt-3">
-                                        <button class="btn btn-success w-100 mb-2 btn-animation" onclick="startAnimation()">
+                                        <button class="btn btn-success w-100 mb-2 btn-animation"
+                                            onclick="startAnimation()">
                                             <i class="fas fa-film me-2"></i>Start Animation
                                         </button>
-                                        <button class="btn btn-warning w-100 mb-2 btn-animation" onclick="pauseAnimation()">
+                                        <button class="btn btn-warning w-100 mb-2 btn-animation"
+                                            onclick="pauseAnimation()">
                                             <i class="fas fa-pause me-2"></i>Pause Animation
                                         </button>
                                         <button class="btn btn-info w-100 btn-animation" onclick="resetAnimation()">
                                             <i class="fas fa-undo me-2"></i>Reset Animation
                                         </button>
                                     </div>
-                                    
+
                                     <!-- Animation Speed -->
                                     <div class="parameter-group mt-3">
                                         <label class="parameter-label">
                                             <i class="fas fa-tachometer-alt me-2"></i>Animation Speed (ms)
                                         </label>
-                                        <input type="range" class="form-range" id="animationSpeed" min="50" max="500" value="200" step="50">
+                                        <input type="range" class="form-range" id="animationSpeed" min="50" max="500"
+                                            value="200" step="50">
                                         <small class="text-muted" id="speedDisplay">200ms</small>
                                     </div>
                                 </div>
@@ -976,9 +1201,12 @@
                                                         <div class="stats-card">
                                                             <h6><i class="fas fa-chart-line me-2"></i>Actual CGM</h6>
                                                             <div class="value-display">
-                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...</div>
+                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...
+                                                                </div>
                                                                 <div><strong>Time in Range:</strong><br>Loading...</div>
                                                             </div>
                                                         </div>
@@ -987,9 +1215,12 @@
                                                         <div class="stats-card">
                                                             <h6><i class="fas fa-users me-2"></i>Population Model</h6>
                                                             <div class="value-display">
-                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...</div>
+                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...
+                                                                </div>
                                                                 <div><strong>Time in Range:</strong><br>Loading...</div>
                                                             </div>
                                                         </div>
@@ -998,9 +1229,12 @@
                                                         <div class="stats-card">
                                                             <h6><i class="fas fa-user me-2"></i>Digital Twin</h6>
                                                             <div class="value-display">
-                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...</div>
-                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...</div>
+                                                                <div class="mb-2"><strong>Mean:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Max:</strong><br>Loading...
+                                                                </div>
+                                                                <div class="mb-2"><strong>Min:</strong><br>Loading...
+                                                                </div>
                                                                 <div><strong>Time in Range:</strong><br>Loading...</div>
                                                             </div>
                                                         </div>
@@ -1027,8 +1261,8 @@
                                                 </div>
                                                 <p class="mt-2">Generating simulation...</p>
                                             </div>
-                                                                                         <!-- Replace img with div for Plotly -->
-                                             <div id="plotlyContainer"></div>
+                                            <!-- Replace img with div for Plotly -->
+                                            <div id="plotlyContainer"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1041,13 +1275,15 @@
                         <div class="attribution-footer">
                             <small>
                                 <i class="fas fa-code me-1"></i>
-                                Built on the <strong>OHSU</strong> & <strong>Clara Mosquera-Lopez</strong> 
+                                Built on the <strong>OHSU</strong> & <strong>Clara Mosquera-Lopez</strong>
                                 <a href="https://github.com/mosqueralopez/T1DSim_AI" target="_blank">
                                     Physiology-guided AI Digital Twin Framework
                                 </a>
                                 <br>
                                 <i class="fas fa-users me-1"></i>
-                                Research Team: <strong>Valentina Roquemen-Echeverri</strong>, <strong>Taisa Kushner</strong>, <strong>Peter G. Jacobs</strong>, <strong>Clara Mosquera-Lopez</strong>
+                                Research Team: <strong>Valentina Roquemen-Echeverri</strong>, <strong>Taisa
+                                    Kushner</strong>, <strong>Peter G. Jacobs</strong>, <strong>Clara
+                                    Mosquera-Lopez</strong>
                             </small>
                         </div>
                     </div>
@@ -1082,39 +1318,39 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Update response:', data); // Debug log
-                
-                // Update plot with Plotly
-                if (data.plot_json) {
-                    const plotData = JSON.parse(data.plot_json);
-                    console.log('Parsed plot data:', plotData); // Debug log
-                    Plotly.newPlot('plotlyContainer', plotData.data, plotData.layout)
-                        .then(() => console.log('Updated plot rendered successfully'))
-                        .catch(err => console.error('Updated plot rendering error:', err));
-                } else {
-                    console.error('No plot_json in response');
-                }
-                
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('plotlyContainer').style.display = 'block';
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Update response:', data); // Debug log
 
-                // Update statistics
-                updateStats();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('plotlyContainer').style.display = 'block';
-            });
+                    // Update plot with Plotly
+                    if (data.plot_json) {
+                        const plotData = JSON.parse(data.plot_json);
+                        console.log('Parsed plot data:', plotData); // Debug log
+                        Plotly.newPlot('plotlyContainer', plotData.data, plotData.layout)
+                            .then(() => console.log('Updated plot rendered successfully'))
+                            .catch(err => console.error('Updated plot rendering error:', err));
+                    } else {
+                        console.error('No plot_json in response');
+                    }
+
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('plotlyContainer').style.display = 'block';
+
+                    // Update statistics
+                    updateStats();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('plotlyContainer').style.display = 'block';
+                });
         }
 
         function updateStats() {
             fetch('/get_stats')
-            .then(response => response.json())
-            .then(data => {
-                const statsHtml = `
+                .then(response => response.json())
+                .then(data => {
+                    const statsHtml = `
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <div class="stats-card">
@@ -1151,20 +1387,20 @@
                         </div>
                     </div>
                 `;
-                document.getElementById('statsContainer').innerHTML = statsHtml;
-            })
-            .catch(error => {
-                console.error('Error fetching stats:', error);
-            });
+                    document.getElementById('statsContainer').innerHTML = statsHtml;
+                })
+                .catch(error => {
+                    console.error('Error fetching stats:', error);
+                });
         }
 
         // Auto-update stats on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateStats();
             // Initialize plot on page load
             const initialPlotJson = JSON.parse('{{ plot_json | safe }}');
             console.log('Initial plot JSON:', initialPlotJson); // Debug log
-            
+
             if (initialPlotJson && typeof initialPlotJson === 'object') {
                 console.log('Plot data:', initialPlotJson.data); // Debug log
                 console.log('Plot layout:', initialPlotJson.layout); // Debug log
@@ -1188,9 +1424,9 @@
         document.getElementById('basalInsulin').addEventListener('change', updateScenario);
         document.getElementById('mealSize').addEventListener('change', updateScenario);
         document.getElementById('mealTime').addEventListener('change', updateScenario);
-        
+
         // Animation speed control
-        document.getElementById('animationSpeed').addEventListener('input', function() {
+        document.getElementById('animationSpeed').addEventListener('input', function () {
             document.getElementById('speedDisplay').textContent = this.value + 'ms';
             if (isAnimating) {
                 pauseAnimation();
@@ -1201,25 +1437,25 @@
         // Animation functions
         function startAnimation() {
             if (isAnimating) return;
-            
+
             // Get animation data first
             fetch('/get_animation_data')
-            .then(response => response.json())
-            .then(data => {
-                animationData = data;
-                currentFrame = 0;
-                isAnimating = true;
-                
-                const speed = parseInt(document.getElementById('animationSpeed').value);
-                animationInterval = setInterval(() => {
-                    if (currentFrame < animationData.total_frames) {
-                        updateAnimationFrame(currentFrame);
-                        currentFrame++;
-                    } else {
-                        pauseAnimation();
-                    }
-                }, speed);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    animationData = data;
+                    currentFrame = 0;
+                    isAnimating = true;
+
+                    const speed = parseInt(document.getElementById('animationSpeed').value);
+                    animationInterval = setInterval(() => {
+                        if (currentFrame < animationData.total_frames) {
+                            updateAnimationFrame(currentFrame);
+                            currentFrame++;
+                        } else {
+                            pauseAnimation();
+                        }
+                    }, speed);
+                });
         }
 
         function pauseAnimation() {
@@ -1238,21 +1474,21 @@
 
         function updateAnimationFrame(frame) {
             fetch(`/get_animation_frame/${frame}`)
-            .then(response => response.json())
-            .then(data => {
-                // The data.plot_url is no longer needed, as we are updating the plot directly
-                // document.getElementById('simulationPlot').src = 'data:image/png;base64,' + data.plot_url;
-            })
-            .catch(error => {
-                console.error('Error updating animation frame:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    // The data.plot_url is no longer needed, as we are updating the plot directly
+                    // document.getElementById('simulationPlot').src = 'data:image/png;base64,' + data.plot_url;
+                })
+                .catch(error => {
+                    console.error('Error updating animation frame:', error);
+                });
         }
 
         // Side menu functions
         function toggleSideMenu() {
             const sideMenu = document.getElementById('sideMenu');
             const overlay = document.getElementById('overlay');
-            
+
             if (sideMenu.classList.contains('open')) {
                 closeSideMenu();
             } else {
@@ -1264,7 +1500,7 @@
         function closeSideMenu() {
             const sideMenu = document.getElementById('sideMenu');
             const overlay = document.getElementById('overlay');
-            
+
             sideMenu.classList.remove('open');
             overlay.classList.remove('active');
         }
@@ -1352,19 +1588,19 @@
             const category = document.getElementById('foodCategory').value;
             const foodSelect = document.getElementById('foodItem');
             const recommendationsDiv = document.getElementById('nutritionRecommendations');
-            
+
             // Clear previous options
             foodSelect.innerHTML = '<option value="">Select a food item...</option>';
-            
+
             if (category && nutritionData[category]) {
                 // Populate food items
-                Object.keys(nutritionData[category]).forEach(function(food) {
+                Object.keys(nutritionData[category]).forEach(function (food) {
                     const option = document.createElement('option');
                     option.value = food;
                     option.textContent = food;
                     foodSelect.appendChild(option);
                 });
-                
+
                 // Show general recommendations for the category
                 let recommendations = '';
                 if (category === 'breakfast') {
@@ -1380,7 +1616,7 @@
                 } else if (category === 'beverages') {
                     recommendations = '<div class="nutrition-tip"><h6><i class="fas fa-star me-2"></i>Beverage Tips</h6><p>• Choose water or unsweetened drinks<br>• Avoid sugary beverages<br>• Consider herbal teas</p></div>';
                 }
-                
+
                 recommendationsDiv.innerHTML = recommendations;
             } else {
                 recommendationsDiv.innerHTML = '<p class="text-muted">Select a food category to see personalized recommendations.</p>';
@@ -1390,10 +1626,10 @@
         function updateNutritionAlternatives() {
             const foodItem = document.getElementById('foodItem').value;
             const alternativesDiv = document.getElementById('nutritionAlternatives');
-            
+
             if (foodItem && alternatives[foodItem]) {
                 let alternativesHtml = '<h6 class="text-info mb-3">Healthier Alternatives:</h6>';
-                alternatives[foodItem].forEach(function(alt) {
+                alternatives[foodItem].forEach(function (alt) {
                     alternativesHtml += '<div class="food-alternative"><h6>' + alt + '</h6><p><i class="fas fa-check text-success me-2"></i>Lower glycemic impact</p></div>';
                 });
                 alternativesDiv.innerHTML = alternativesHtml;
@@ -1405,71 +1641,71 @@
         function quickAddFood(foodName, carbs) {
             // Set the food item
             document.getElementById('foodItem').value = foodName;
-            
+
             // Update nutrition analysis
             updateNutritionAnalysis();
-            
+
             // Show success message
             showNotification(`Added ${foodName} to your meal analysis!`, 'success');
         }
-        
+
         function updateNutritionAnalysis() {
             const foodItem = document.getElementById('foodItem').value;
             const category = document.getElementById('foodCategory').value;
             const quantity = parseFloat(document.getElementById('foodQuantity').value) || 1;
-            
+
             if (foodItem && category && nutritionData[category] && nutritionData[category][foodItem]) {
                 const nutrition = nutritionData[category][foodItem];
-                
+
                 // Calculate adjusted values based on quantity
                 const adjustedCarbs = nutrition.carbs * quantity;
                 const adjustedProtein = nutrition.protein * quantity;
                 const adjustedFat = nutrition.fat * quantity;
                 const adjustedFiber = nutrition.fiber * quantity;
-                
+
                 // Update nutrition summary
                 document.getElementById('currentCarbs').textContent = adjustedCarbs;
                 document.getElementById('currentProtein').textContent = adjustedProtein;
                 document.getElementById('currentFat').textContent = adjustedFat;
                 document.getElementById('currentFiber').textContent = adjustedFiber;
-                
+
                 // Update progress bars
                 updateProgressBars(adjustedCarbs, adjustedProtein, adjustedFat, adjustedFiber);
-                
+
                 // Update blood sugar impact
                 const bloodSugarImpact = Math.round(adjustedCarbs * 2.5);
                 document.getElementById('bloodSugarImpact').textContent = bloodSugarImpact + ' mg/dL';
-                
+
                 // Update glycemic indicator
                 updateGlycemicIndicator(nutrition.glycemic, adjustedCarbs);
-                
+
                 // Update meal size in simulation
                 document.getElementById('mealSize').value = adjustedCarbs;
-                
+
                 // Auto-update simulation
                 updateScenario();
             }
         }
-        
+
         function updateProgressBars(carbs, protein, fat, fiber) {
             // Set progress bar widths (normalized to reasonable ranges)
             const carbsPercent = Math.min((carbs / 100) * 100, 100);
             const proteinPercent = Math.min((protein / 50) * 100, 100);
             const fatPercent = Math.min((fat / 50) * 100, 100);
             const fiberPercent = Math.min((fiber / 25) * 100, 100);
-            
+
             document.getElementById('carbsProgress').style.width = carbsPercent + '%';
             document.getElementById('proteinProgress').style.width = proteinPercent + '%';
             document.getElementById('fatProgress').style.width = fatPercent + '%';
             document.getElementById('fiberProgress').style.width = fiberPercent + '%';
         }
-        
+
         function updateGlycemicIndicator(glycemic, carbs) {
             const alertDiv = document.getElementById('glycemicAlert');
             const textSpan = document.getElementById('glycemicText');
-            
+
             alertDiv.style.display = 'block';
-            
+
             if (glycemic === 'low') {
                 alertDiv.className = 'alert alert-success';
                 textSpan.innerHTML = `<strong>Low Glycemic Impact!</strong> This food should help maintain stable blood sugar levels.`;
@@ -1481,7 +1717,7 @@
                 textSpan.innerHTML = `<strong>High Impact Warning!</strong> This food may cause rapid blood sugar spikes. Consider smaller portions or alternatives.`;
             }
         }
-        
+
         function showNotification(message, type = 'info') {
             // Create notification element
             const notification = document.createElement('div');
@@ -1491,10 +1727,10 @@
                 ${message}
                 <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
             `;
-            
+
             // Add to page
             document.body.appendChild(notification);
-            
+
             // Remove after 3 seconds
             setTimeout(() => {
                 if (notification.parentElement) {
@@ -1502,20 +1738,20 @@
                 }
             }, 3000);
         }
-        
+
         function analyzeNutrition() {
             const foodItem = document.getElementById('foodItem').value;
             const category = document.getElementById('foodCategory').value;
-            
+
             if (foodItem && category && nutritionData[category] && nutritionData[category][foodItem]) {
                 updateNutritionAnalysis();
-                
+
                 // Show impact analysis
                 const recommendationsDiv = document.getElementById('nutritionRecommendations');
                 const nutrition = nutritionData[category][foodItem];
                 const quantity = parseFloat(document.getElementById('foodQuantity').value) || 1;
                 const adjustedCarbs = nutrition.carbs * quantity;
-                
+
                 let impactAnalysis = `
                     <div class="nutrition-tip">
                         <h6><i class="fas fa-chart-line me-2"></i>Blood Sugar Impact Analysis</h6>
@@ -1525,7 +1761,7 @@
                         • Protein: ${nutrition.protein * quantity}g | Fat: ${nutrition.fat * quantity}g | Fiber: ${nutrition.fiber * quantity}g</p>
                     </div>
                 `;
-                
+
                 if (nutrition.glycemic === 'high') {
                     impactAnalysis += `
                         <div class="nutrition-tip" style="background: linear-gradient(135deg, #FF6347 0%, #FF8C00 100%);">
@@ -1541,34 +1777,34 @@
                         </div>
                     `;
                 }
-                
+
                 recommendationsDiv.innerHTML = impactAnalysis;
-                
+
                 showNotification(`Analyzed ${foodItem} - ${adjustedCarbs}g carbs`, 'success');
             } else {
                 showNotification('Please select a food item first', 'warning');
             }
         }
-        
+
         // Voice Food Logging Functions
         let isListening = false;
-        
+
         function startVoiceLogging() {
             if (isListening) {
                 stopVoiceLogging();
                 return;
             }
-            
+
             isListening = true;
             const btn = document.getElementById('voiceLogBtn');
             const statusDiv = document.getElementById('voiceStatus');
             const statusText = document.getElementById('voiceStatusText');
-            
+
             btn.innerHTML = '<i class="fas fa-stop me-2"></i>Stop Voice Logging';
             btn.className = 'btn btn-danger w-100 mb-2';
             statusDiv.style.display = 'block';
             statusText.textContent = 'Listening for food input...';
-            
+
             // Call the voice logging endpoint
             fetch('/voice_log_food', {
                 method: 'POST',
@@ -1576,64 +1812,64 @@
                     'Content-Type': 'application/json',
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    statusText.textContent = data.message;
-                    statusDiv.className = 'alert alert-success';
-                    
-                    // Update meal size if carbs were logged
-                    if (data.total_carbs > 0) {
-                        document.getElementById('mealSize').value = data.total_carbs;
-                        
-                        // Update nutrition analysis with voice-logged foods
-                        updateNutritionFromVoiceLog(data.foods);
-                        
-                        updateScenario();
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        statusText.textContent = data.message;
+                        statusDiv.className = 'alert alert-success';
+
+                        // Update meal size if carbs were logged
+                        if (data.total_carbs > 0) {
+                            document.getElementById('mealSize').value = data.total_carbs;
+
+                            // Update nutrition analysis with voice-logged foods
+                            updateNutritionFromVoiceLog(data.foods);
+
+                            updateScenario();
+                        }
+
+                        // Show food log
+                        loadFoodLog();
+
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            stopVoiceLogging();
+                        }, 3000);
+                    } else {
+                        statusText.textContent = 'Error: ' + data.error;
+                        statusDiv.className = 'alert alert-danger';
                     }
-                    
-                    // Show food log
-                    loadFoodLog();
-                    
-                    // Reset button after 3 seconds
-                    setTimeout(() => {
-                        stopVoiceLogging();
-                    }, 3000);
-                } else {
-                    statusText.textContent = 'Error: ' + data.error;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    statusText.textContent = 'Error: Could not connect to voice service';
                     statusDiv.className = 'alert alert-danger';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                statusText.textContent = 'Error: Could not connect to voice service';
-                statusDiv.className = 'alert alert-danger';
-            });
+                });
         }
-        
+
         function stopVoiceLogging() {
             isListening = false;
             const btn = document.getElementById('voiceLogBtn');
             const statusDiv = document.getElementById('voiceStatus');
-            
+
             btn.innerHTML = '<i class="fas fa-microphone me-2"></i>Start Voice Logging';
             btn.className = 'btn btn-warning w-100 mb-2';
             statusDiv.style.display = 'none';
         }
-        
+
         function loadFoodLog() {
             fetch('/get_food_log')
-            .then(response => response.json())
-            .then(data => {
-                const logDisplay = document.getElementById('foodLogDisplay');
-                const logContent = document.getElementById('foodLogContent');
-                const totalCarbs = document.getElementById('totalCarbs24h');
-                
-                if (data.recent_foods && data.recent_foods.length > 0) {
-                    let logHtml = '';
-                    data.recent_foods.slice(-5).reverse().forEach(food => {
-                        const time = new Date(food.timestamp).toLocaleTimeString();
-                        logHtml += `
+                .then(response => response.json())
+                .then(data => {
+                    const logDisplay = document.getElementById('foodLogDisplay');
+                    const logContent = document.getElementById('foodLogContent');
+                    const totalCarbs = document.getElementById('totalCarbs24h');
+
+                    if (data.recent_foods && data.recent_foods.length > 0) {
+                        let logHtml = '';
+                        data.recent_foods.slice(-5).reverse().forEach(food => {
+                            const time = new Date(food.timestamp).toLocaleTimeString();
+                            logHtml += `
                             <div class="food-log-entry">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span><strong>${food.food_name}</strong> (${food.quantity} ${food.unit})</span>
@@ -1642,21 +1878,21 @@
                                 <small class="text-muted">${time}</small>
                             </div>
                         `;
-                    });
-                    logContent.innerHTML = logHtml;
-                    totalCarbs.textContent = data.total_carbs_24h;
-                    logDisplay.style.display = 'block';
-                } else {
-                    logContent.innerHTML = '<p class="text-muted">No food logged yet.</p>';
-                    totalCarbs.textContent = '0';
-                    logDisplay.style.display = 'block';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading food log:', error);
-            });
+                        });
+                        logContent.innerHTML = logHtml;
+                        totalCarbs.textContent = data.total_carbs_24h;
+                        logDisplay.style.display = 'block';
+                    } else {
+                        logContent.innerHTML = '<p class="text-muted">No food logged yet.</p>';
+                        totalCarbs.textContent = '0';
+                        logDisplay.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading food log:', error);
+                });
         }
-        
+
         function clearFoodLog() {
             if (confirm('Are you sure you want to clear the food log?')) {
                 fetch('/clear_food_log', {
@@ -1665,32 +1901,32 @@
                         'Content-Type': 'application/json',
                     }
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('foodLogDisplay').style.display = 'none';
-                        alert('Food log cleared successfully');
-                    } else {
-                        alert('Error: ' + data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error clearing food log');
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('foodLogDisplay').style.display = 'none';
+                            alert('Food log cleared successfully');
+                        } else {
+                            alert('Error: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error clearing food log');
+                    });
             }
         }
-        
+
         function manualLogFood() {
             const foodName = document.getElementById('manualFoodName').value.trim();
             const quantity = parseFloat(document.getElementById('manualQuantity').value);
             const unit = document.getElementById('manualUnit').value;
-            
+
             if (!foodName) {
                 alert('Please enter a food name');
                 return;
             }
-            
+
             fetch('/manual_log_food', {
                 method: 'POST',
                 headers: {
@@ -1702,42 +1938,42 @@
                     unit: unit
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(data.message);
-                    
-                    // Update meal size if carbs were logged
-                    if (data.total_carbs > 0) {
-                        document.getElementById('mealSize').value = data.total_carbs;
-                        updateScenario();
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+
+                        // Update meal size if carbs were logged
+                        if (data.total_carbs > 0) {
+                            document.getElementById('mealSize').value = data.total_carbs;
+                            updateScenario();
+                        }
+
+                        // Clear form
+                        document.getElementById('manualFoodName').value = '';
+                        document.getElementById('manualQuantity').value = '1';
+
+                        // Show food log
+                        loadFoodLog();
+                    } else {
+                        alert('Error: ' + data.error);
                     }
-                    
-                    // Clear form
-                    document.getElementById('manualFoodName').value = '';
-                    document.getElementById('manualQuantity').value = '1';
-                    
-                    // Show food log
-                    loadFoodLog();
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error logging food');
-            });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error logging food');
+                });
         }
-        
+
         function updateNutritionFromVoiceLog(foods) {
             if (!foods || foods.length === 0) return;
-            
+
             let totalCarbs = 0;
             let totalProtein = 0;
             let totalFat = 0;
             let totalFiber = 0;
             let foodNames = [];
-            
+
             foods.forEach(food => {
                 totalCarbs += food.carbs * food.quantity;
                 totalProtein += (food.protein || 0) * food.quantity;
@@ -1745,33 +1981,136 @@
                 totalFiber += (food.fiber || 0) * food.quantity;
                 foodNames.push(food.name);
             });
-            
+
             // Update nutrition display
             document.getElementById('currentCarbs').textContent = totalCarbs;
             document.getElementById('currentProtein').textContent = totalProtein;
             document.getElementById('currentFat').textContent = totalFat;
             document.getElementById('currentFiber').textContent = totalFiber;
-            
+
             // Update progress bars
             updateProgressBars(totalCarbs, totalProtein, totalFat, totalFiber);
-            
+
             // Update blood sugar impact
             const bloodSugarImpact = Math.round(totalCarbs * 2.5);
             document.getElementById('bloodSugarImpact').textContent = bloodSugarImpact + ' mg/dL';
-            
+
             // Show glycemic indicator
             const glycemicLevel = totalCarbs > 50 ? 'high' : totalCarbs > 25 ? 'medium' : 'low';
             updateGlycemicIndicator(glycemicLevel, totalCarbs);
-            
+
             // Show notification
             const foodList = foodNames.join(', ');
             showNotification(`Voice logged: ${foodList} (${totalCarbs}g carbs)`, 'success');
         }
-        
-        // Load food log on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            loadFoodLog();
+    </script>
+
+    <!-- Digital Twin Chat Terminal -->
+    <div class="chat-terminal-bubble" onclick="toggleChat()">
+        <i class="fas fa-brain"></i>
+        <span class="badge rounded-pill" id="chatBadge" style="display:none">1</span>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h6><span class="status-dot"></span>DIGITAL TWIN TERMINAL</h6>
+            <button class="btn btn-sm text-muted" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message ai">
+                Hello! I am your Digital Twin. Ask me anything about your glucose predictions, meals, or activities.
+            </div>
+            <div class="message ai">
+                e.g., "What if I eat 40g of carbs?" or "How will a walk help?"
+            </div>
+        </div>
+        <div class="typing-indicator px-3" id="typingIndicator">
+            <i class="fas fa-spinner fa-spin me-1"></i> Brain is simulating...
+        </div>
+        <form class="chat-input-area" onsubmit="handleChatSubmit(event)">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask your twin..." autocomplete="off">
+            <button type="submit" class="btn-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const window = document.getElementById('chatWindow');
+            window.classList.toggle('open');
+            document.getElementById('chatBadge').style.display = 'none';
+        }
+
+        async function handleChatSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('chatInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            // Add user message
+            addMessage(query, 'user');
+            input.value = '';
+
+            // Show typing indicator
+            document.getElementById('typingIndicator').style.display = 'block';
+
+            try {
+                // Call the Brain API
+                const response = await fetch('/brain/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: query })
+                });
+
+                const result = await response.json();
+
+                // Hide typing
+                document.getElementById('typingIndicator').style.display = 'none';
+
+                if (result.success) {
+                    let aiHtml = result.explanation;
+
+                    if (result.summary_stats) {
+                        const stats = result.summary_stats;
+                        aiHtml += `<div class="simulation-log">
+                            <span class="log-item log-info">> SIM_START: ${stats.start_glucose.toFixed(1)} mg/dL</span>
+                            <span class="log-item log-success">> PREDICTED_PEAK: ${stats.max_glucose.toFixed(1)} mg/dL</span>
+                            <span class="log-item">> VARIATION: +${stats.glucose_rise.toFixed(1)} pts</span>
+                            <span class="log-item">> PROVIDER: OpenAI / Groq</span>
+                        </div>`;
+                    }
+
+                    addMessage(aiHtml, 'ai', true);
+                } else {
+                    addMessage("Hitch in the brain: " + (result.message || result.error), 'ai');
+                }
+            } catch (error) {
+                document.getElementById('typingIndicator').style.display = 'none';
+                addMessage("Connection error to Digital Twin. Is the server running?", 'ai');
+            }
+        }
+
+        function addMessage(text, sender, isHtml = false) {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+            if (isHtml) {
+                div.innerHTML = text;
+            } else {
+                div.textContent = text;
+            }
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Original initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof loadFoodLog === 'function') {
+                loadFoodLog();
+            }
         });
     </script>
 </body>
-</html> 
+
+</html>
