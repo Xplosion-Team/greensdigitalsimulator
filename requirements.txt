@@ -1,10 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
 setuptools
 wheel
 Flask==2.3.3
 numpy==1.24.3
 pandas==2.0.3
 plotly==5.17.0
-torch==2.0.1 --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.0.1+cpu ; sys_platform == 'linux'
+torch==2.0.1 ; sys_platform != 'linux'
 scikit-learn==1.3.0
 librosa==0.10.0
 Werkzeug==2.3.7
