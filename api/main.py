@@ -1,8 +1,9 @@
 import os
 from typing import Any, Dict, Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Form, Response
 from pydantic import BaseModel, Field
+from twilio.twiml.messaging_response import MessagingResponse
 
 from t1dsim_ai.brains.orchestrator import BrainOrchestrator
 
@@ -40,3 +41,28 @@ def brain_query(req: BrainQueryRequest) -> Dict[str, Any]:
 
     result = brain.query(user_query=req.text, current_glucose=req.current_glucose)
     return result
+
+
+@app.post("/v1/brain/sms")
+async def sms_reply(Body: str = Form(...), From: str = Form(...)):
+    """Twilio SMS Webhook. Receives text, queries Brain, replies via SMS."""
+    # 1. Initialize Brain
+    # Note: Currently uses a hardcoded digital_twin_id=1 (Phase 7 prototype).
+    # In Phase 3 (Data Integration), we will fetch 'From' user's real-time glucose.
+    brain = BrainOrchestrator(
+        provider="fallback",
+        digital_twin_id=1,
+    )
+
+    # 2. Query the Brain
+    # Defaulting to 115.0 mg/dL for now.
+    result = brain.query(user_query=Body, current_glucose=115.0)
+
+    # 3. Build TwiML Response
+    twiml = MessagingResponse()
+    if result["success"]:
+        twiml.message(result["explanation"])
+    else:
+        twiml.message(result["message"])
+
+    return Response(content=str(twiml), media_type="application/xml")
