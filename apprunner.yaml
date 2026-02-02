@@ -10,4 +10,5 @@ run:
   network:
     port: 8080
   env:
-    PYTHONPATH: src
+    - name: PYTHONPATH
+      value: src
