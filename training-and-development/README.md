@@ -12,6 +12,29 @@ training-and-development/
 ├── LEARNING_TRACKER.md       # Your main progress tracker (START HERE!)
 ├── README.md                 # This file
 │
+├── cgm-experiments/          # NEW: CGM eating experiments module
+│   ├── README.md             # Eating experiments documentation
+│   ├── eating_tracker.py     # Meal and glucose tracking
+│   ├── meal_analyzer.py      # Meal analysis and patterns
+│   ├── glucose_patterns.py   # Pattern detection in CGM data
+│   ├── experiment_templates.json  # Pre-defined experiment protocols
+│   └── results/              # Experiment results and data
+│
+├── backend-integration/      # NEW: Backend integration module
+│   ├── README.md             # Backend integration documentation
+│   ├── api/
+│   │   └── cgm_endpoints.py  # CGM data API endpoints
+│   └── data_sync.py          # Data synchronization utilities
+│
+├── frontend-design/          # NEW: Frontend design module
+│   ├── README.md             # Design specifications and guidelines
+│   └── components/           # UI component specifications
+│
+├── base-time/                # NEW: Time management utilities
+│   ├── README.md             # Time utilities documentation
+│   └── utils/
+│       └── time_manager.py   # Core time management utilities
+│
 ├── week1/                    # Week 1 deliverables
 │   ├── glucoseStates.ts      #  
 │   ├── mockGlucoseData.json  #  
@@ -103,8 +126,14 @@ Use the vibe coding prompts provided for each task.
 
 ## 📝 Where to Save Your Work
 
-| Week | What You're Building | Save Location |
-|------|---------------------|---------------|
+| Module | What You're Building | Save Location |
+|--------|---------------------|---------------|
+| **New Modules** | | |
+| CGM Experiments | Eating experiments & analysis | `training-and-development/cgm-experiments/` |
+| Backend Integration | API endpoints & data sync | `training-and-development/backend-integration/` |
+| Frontend Design | UI components & visualizations | `training-and-development/frontend-design/` |
+| Base Time | Time management utilities | `training-and-development/base-time/` |
+| **Weekly Work** | | |
 | Week 1 | TypeScript logic files | `training-and-development/week1/` |
 | Week 2 | Message templates | `training-and-development/week2/` |
 | Week 3 | Expo mobile app | `training-and-development/week3/` |
@@ -138,7 +167,7 @@ Add questions to your weekly review document.
 
 By the end of 6 weeks, you should have:
 
-✅ **7 Technical Deliverables**
+✅ **7+ Technical Deliverables**
 - State classification engine
 - Mock data generator
 - Message template system
@@ -146,6 +175,10 @@ By the end of 6 weeks, you should have:
 - Voice integration
 - Python API
 - Integration plan
+- **NEW**: CGM eating experiments framework
+- **NEW**: Backend integration API
+- **NEW**: Frontend design system
+- **NEW**: Time management utilities
 
 ✅ **5 Core Skills**
 - TypeScript fundamentals
@@ -173,6 +206,76 @@ By the end of 6 weeks, you should have:
 
 ### AI Assistant
 - **Antigravity** - Your coding partner (use it constantly!)
+
+---
+
+## 🆕 New Development Modules
+
+### CGM Eating Experiments
+Learn how to conduct and analyze eating experiments to understand glucose responses.
+
+**What's Included:**
+- `eating_tracker.py` - Track meals and glucose readings
+- `meal_analyzer.py` - Analyze meal responses and patterns
+- `glucose_patterns.py` - Detect patterns in CGM data
+- `experiment_templates.json` - Pre-defined experiment protocols
+
+**Use Cases:**
+- Test individual foods for glycemic impact
+- Compare meal timing effects
+- Analyze portion size responses
+- Identify optimal food combinations
+
+📖 [Read the CGM Experiments Guide](cgm-experiments/README.md)
+
+### Backend Integration
+Build robust backend APIs for CGM data management and synchronization.
+
+**What's Included:**
+- `cgm_endpoints.py` - FastAPI endpoints for CGM data
+- `data_sync.py` - Synchronization utilities for offline support
+
+**Features:**
+- RESTful API for glucose data
+- Real-time data synchronization
+- Offline cache management
+- Conflict resolution
+
+📖 [Read the Backend Integration Guide](backend-integration/README.md)
+
+### Frontend Design
+Comprehensive design system for building accessible CGM interfaces.
+
+**What's Included:**
+- UI component specifications
+- Color system and typography
+- Accessibility guidelines
+- User interaction flows
+
+**Components:**
+- Glucose display widgets
+- Trend indicators
+- Timeline visualizations
+- Meal logging interfaces
+
+📖 [Read the Frontend Design Guide](frontend-design/README.md)
+
+### Base Time Utilities
+Time management utilities for CGM applications.
+
+**What's Included:**
+- `time_manager.py` - Core time utilities
+- Timezone handling
+- CGM interval calculations
+- Time-based filtering
+
+**Features:**
+- Timezone-aware datetime handling
+- Human-readable time formatting
+- Duration calculations
+- Time-in-range calculations
+
+📖 [Read the Time Utilities Guide](base-time/README.md)
 
 ---
 

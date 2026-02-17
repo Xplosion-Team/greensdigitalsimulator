@@ -1,0 +1,229 @@
+{
+  "experiment_templates": [
+    {
+      "id": "single_food_test",
+      "name": "Single Food Test",
+      "description": "Test individual foods to understand their glycemic impact",
+      "duration_hours": 3,
+      "protocol": {
+        "preparation": [
+          "Fast for 2 hours before test",
+          "Ensure baseline glucose is stable (70-130 mg/dL)",
+          "No exercise 2 hours before test"
+        ],
+        "measurements": [
+          {"time_offset_minutes": -15, "type": "glucose", "context": "baseline"},
+          {"time_offset_minutes": 0, "type": "meal", "context": "test_food"},
+          {"time_offset_minutes": 15, "type": "glucose", "context": "15min_post"},
+          {"time_offset_minutes": 30, "type": "glucose", "context": "30min_post"},
+          {"time_offset_minutes": 60, "type": "glucose", "context": "1hr_post"},
+          {"time_offset_minutes": 90, "type": "glucose", "context": "90min_post"},
+          {"time_offset_minutes": 120, "type": "glucose", "context": "2hr_post"},
+          {"time_offset_minutes": 180, "type": "glucose", "context": "3hr_post"}
+        ],
+        "notes": [
+          "Test same food multiple times for consistency",
+          "Record exact portion size and preparation method",
+          "Note any unusual factors (stress, sleep, etc.)"
+        ]
+      }
+    },
+    {
+      "id": "meal_timing_test",
+      "name": "Meal Timing Comparison",
+      "description": "Compare glucose response to same meal at different times",
+      "duration_days": 3,
+      "protocol": {
+        "preparation": [
+          "Prepare identical meals for 3 different times",
+          "Ensure consistent baseline glucose before each test"
+        ],
+        "test_times": ["breakfast", "lunch", "dinner"],
+        "measurements": [
+          {"time_offset_minutes": -15, "type": "glucose", "context": "baseline"},
+          {"time_offset_minutes": 0, "type": "meal", "context": "test_meal"},
+          {"time_offset_minutes": 30, "type": "glucose", "context": "30min_post"},
+          {"time_offset_minutes": 60, "type": "glucose", "context": "1hr_post"},
+          {"time_offset_minutes": 120, "type": "glucose", "context": "2hr_post"}
+        ],
+        "notes": [
+          "Keep meal composition exactly the same",
+          "Test on different days at different times",
+          "Record time of day and circadian factors"
+        ]
+      }
+    },
+    {
+      "id": "portion_size_test",
+      "name": "Portion Size Experiment",
+      "description": "Test different portion sizes of the same food",
+      "duration_days": 3,
+      "protocol": {
+        "preparation": [
+          "Select a single food item",
+          "Prepare 3 portion sizes: small, medium, large",
+          "Test on separate days"
+        ],
+        "portion_sizes": [
+          {"size": "small", "carbs": 15},
+          {"size": "medium", "carbs": 30},
+          {"size": "large", "carbs": 45}
+        ],
+        "measurements": [
+          {"time_offset_minutes": -15, "type": "glucose", "context": "baseline"},
+          {"time_offset_minutes": 0, "type": "meal", "context": "test_portion"},
+          {"time_offset_minutes": 30, "type": "glucose", "context": "30min_post"},
+          {"time_offset_minutes": 60, "type": "glucose", "context": "1hr_post"},
+          {"time_offset_minutes": 120, "type": "glucose", "context": "2hr_post"}
+        ],
+        "notes": [
+          "Measure portions accurately",
+          "Look for linear or non-linear response to portion size",
+          "Identify optimal portion for glucose control"
+        ]
+      }
+    },
+    {
+      "id": "food_combination_test",
+      "name": "Food Combination Test",
+      "description": "Test how food pairings affect glucose response",
+      "duration_days": 4,
+      "protocol": {
+        "preparation": [
+          "Day 1: Test carb alone",
+          "Day 2: Test carb + protein",
+          "Day 3: Test carb + fat",
+          "Day 4: Test carb + protein + fat"
+        ],
+        "test_combinations": [
+          {"day": 1, "foods": ["bread"], "composition": "carb_only"},
+          {"day": 2, "foods": ["bread", "chicken"], "composition": "carb_protein"},
+          {"day": 3, "foods": ["bread", "butter"], "composition": "carb_fat"},
+          {"day": 4, "foods": ["bread", "chicken", "avocado"], "composition": "balanced"}
+        ],
+        "measurements": [
+          {"time_offset_minutes": -15, "type": "glucose", "context": "baseline"},
+          {"time_offset_minutes": 0, "type": "meal", "context": "test_combination"},
+          {"time_offset_minutes": 30, "type": "glucose", "context": "30min_post"},
+          {"time_offset_minutes": 60, "type": "glucose", "context": "1hr_post"},
+          {"time_offset_minutes": 90, "type": "glucose", "context": "90min_post"},
+          {"time_offset_minutes": 120, "type": "glucose", "context": "2hr_post"}
+        ],
+        "notes": [
+          "Keep carb amount constant across tests",
+          "Observe how protein/fat slow glucose absorption",
+          "Note any digestive effects"
+        ]
+      }
+    },
+    {
+      "id": "exercise_timing_test",
+      "name": "Exercise Timing Experiment",
+      "description": "Test glucose response with exercise at different times relative to meals",
+      "duration_days": 3,
+      "protocol": {
+        "preparation": [
+          "Day 1: Exercise before meal",
+          "Day 2: Exercise 1 hour after meal",
+          "Day 3: No exercise (control)"
+        ],
+        "exercise_timing": [
+          {"day": 1, "timing": "pre-meal", "offset_minutes": -30},
+          {"day": 2, "timing": "post-meal", "offset_minutes": 60},
+          {"day": 3, "timing": "none", "offset_minutes": null}
+        ],
+        "measurements": [
+          {"time_offset_minutes": -60, "type": "glucose", "context": "pre-exercise"},
+          {"time_offset_minutes": -15, "type": "glucose", "context": "baseline"},
+          {"time_offset_minutes": 0, "type": "meal", "context": "test_meal"},
+          {"time_offset_minutes": 30, "type": "glucose", "context": "30min_post"},
+          {"time_offset_minutes": 60, "type": "glucose", "context": "1hr_post"},
+          {"time_offset_minutes": 120, "type": "glucose", "context": "2hr_post"},
+          {"time_offset_minutes": 180, "type": "glucose", "context": "3hr_post"}
+        ],
+        "notes": [
+          "Keep exercise intensity and duration consistent",
+          "Use same meal across all tests",
+          "Monitor for delayed glucose changes"
+        ]
+      }
+    },
+    {
+      "id": "stress_response_test",
+      "name": "Stress Response Experiment",
+      "description": "Observe glucose patterns during different stress levels",
+      "duration_weeks": 2,
+      "protocol": {
+        "preparation": [
+          "Identify high-stress and low-stress periods",
+          "Maintain consistent meals during testing",
+          "Rate stress level 1-10 at each measurement"
+        ],
+        "measurements": [
+          {"frequency": "every_meal", "type": "glucose", "context": "pre-meal"},
+          {"frequency": "every_meal", "type": "glucose", "context": "2hr_post_meal"},
+          {"frequency": "daily", "type": "stress_rating", "context": "daily_stress_score"},
+          {"frequency": "daily", "type": "sleep_quality", "context": "sleep_hours"}
+        ],
+        "tracking": [
+          "Stress rating (1-10)",
+          "Sleep hours",
+          "Glucose readings",
+          "Meal consistency"
+        ],
+        "notes": [
+          "Look for correlation between stress and glucose",
+          "Identify stress-triggered glucose patterns",
+          "Note any relationship with sleep quality"
+        ]
+      }
+    }
+  ],
+  "measurement_guidelines": {
+    "glucose_reading": {
+      "timing": "Readings should be taken at exact scheduled times",
+      "technique": "Wash hands, use clean CGM sensor or meter",
+      "recording": "Log immediately with timestamp and context"
+    },
+    "meal_logging": {
+      "required_info": [
+        "All food items consumed",
+        "Portion sizes or weights",
+        "Preparation method",
+        "Estimated macros (carbs, protein, fat)"
+      ],
+      "timing": "Log exact time meal started",
+      "photos": "Consider taking photos for accuracy"
+    },
+    "context_notes": {
+      "record": [
+        "Time of day",
+        "Activity level",
+        "Stress level",
+        "Sleep quality",
+        "Medications/insulin",
+        "Any unusual factors"
+      ]
+    }
+  },
+  "safety_guidelines": {
+    "stop_experiment_if": [
+      "Glucose falls below 60 mg/dL",
+      "Glucose rises above 300 mg/dL",
+      "Feeling unwell or unusual symptoms",
+      "Unable to maintain safe monitoring"
+    ],
+    "always_have_available": [
+      "Fast-acting glucose (15g tablets or juice)",
+      "Emergency contact information",
+      "Blood glucose meter (backup to CGM)",
+      "Insulin if needed"
+    ],
+    "consult_healthcare_provider": [
+      "Before starting experiments",
+      "If patterns are concerning",
+      "When making treatment changes",
+      "For interpretation of results"
+    ]
+  }
+}
