@@ -1,0 +1,21 @@
+# Requirements for Training & Development Modules
+
+# Backend Integration
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.5.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Time Management
+pytz>=2023.3
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Optional: for visualization
+matplotlib>=3.7.0
+plotly>=5.17.0

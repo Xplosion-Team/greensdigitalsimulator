@@ -163,3 +163,10 @@ cython_debug/
 # files
 data/
 results/
+
+# Training module test artifacts
+training-and-development/cgm-experiments/results/*.json
+training-and-development/backend-integration/test_*
+training-and-development/backend-integration/local_data
+training-and-development/backend-integration/cache
+training-and-development/**/__pycache__/
