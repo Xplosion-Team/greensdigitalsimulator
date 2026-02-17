@@ -1,5 +1,5 @@
 # 🗓 Week 3: Mobile UI Foundation
-**Week of**: 02.15.26  
+**Week of**: 02.08.26  
 ### Checklist
 
 #### Mobile App Setup
@@ -30,7 +30,7 @@
 ---
 
 ### Week 3 Summary
-**Total Time Spent**: ~9 hours  
+**Total Time Spent**: 3 hours  
 **Deliverables Completed**: 3/3
 
 **Key Achievement**: Transformed raw simulation algorithms into a tangible, interactive mobile application.

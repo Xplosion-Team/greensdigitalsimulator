@@ -33,7 +33,7 @@
 ---
 
 ### Week 2 Summary
-**Total Time Spent**: ~7 hours  
+**Total Time Spent**: 1.5 hours  
 **Deliverables Completed**: 3/3
 
 **Key Achievement**: Successfully mapped technical glucose states to empathetic, clinical, and contextual human language.

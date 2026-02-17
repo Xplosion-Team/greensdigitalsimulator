@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, SafeAreaView, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, SafeAreaView, ActivityIndicator, Text, TouchableOpacity, Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import GlucoseStatusScreen from './screens/GlucoseStatusScreen';
 import { getMessageForState, UserRole } from '../logic/messageTemplates';
@@ -9,7 +9,11 @@ import { getRecommendation, TimeOfDay, MealContext, ActivityContext } from '../l
 // Types from logic
 import { GlucoseState } from './components/GlucoseBadge';
 
-const API_URL = 'http://localhost:8000';
+// Dynamic API URL for Universal Compatibility
+// localhost works for web/simulators on the same machine
+// 192.168.4.25 is required for physical devices on the same Wi-Fi
+const API_BASE = Platform.OS === 'web' ? 'localhost' : '192.168.4.25';
+const API_URL = `http://${API_BASE}:8000`;
 
 export default function App() {
   const [dataPoints, setDataPoints] = useState<any[]>([]);
