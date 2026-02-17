@@ -13,9 +13,9 @@ training-and-development/
 ├── README.md                 # This file
 │
 ├── week1/                    # Week 1 deliverables
-│   ├── glucoseStates.ts      # (To be created)
-│   ├── mockGlucoseData.json  # (To be created)
-│   └── stateEngine.ts        # (To be created)
+│   ├── glucoseStates.ts      #  
+│   ├── mockGlucoseData.json  #  
+│   └── stateEngine.ts        #  
 │
 ├── week2/                    # Week 2 deliverables
 │   ├── messageTemplates.ts   # (To be created)

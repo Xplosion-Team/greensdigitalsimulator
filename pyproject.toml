@@ -63,7 +63,7 @@ Issues = "https://github.com/Xplosion-Team/greensdigitalsimulator/issues"
 
 [tool.setuptools]
 packages = ["t1dsim_ai"]
-package-dir = {"" = "src"}
+# package-dir = {"" = "src"}  <-- Default to root since code is in t1dsim_ai/
 
 [tool.setuptools.package-data]
 t1dsim_ai = ["*.pkl", "*.json", "*.csv"]
