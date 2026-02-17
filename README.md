@@ -1,35 +1,87 @@
 # Greens Digital Simulator
 
-This project contains the Digital Twin simulation and the mobile interface logic.
+A comprehensive Digital Twin simulation framework for Type 1 Diabetes (T1D) management, featuring predictive modeling, a web-based dashboard, and mobile interface logic.
 
-## Setup
+## 🌟 Overview
+Greens Digital Simulator allows users to simulate glucose dynamics using personalized "Digital Twins". It integrates AI-driven predictions with real-time data to help visualize the impact of meals, insulin, and activity on blood glucose levels.
 
-1.  **Python Environment**:
-    *   Create a virtual environment: `python -m venv .venv`
-    *   Install dependencies: `pip install -r requirments.txt` && `pip install -e .`
+## 🚀 Key Features
+- **Digital Twin Simulation**: High-fidelity glucose forecasting using Neural Networks.
+- **Web Dashboard**: Interactive interface for running simulations and visualizing results.
+- **Voice Food Logging**: Integrated nutrition parsing via voice commands.
+- **Mobile Engine**: TypeScript-based logic for glucose state classification and urgency analysis (Low/High/Trending).
+- **REST API**: FastAPI backend to serve simulation data to mobile or web clients.
 
-2.  **Node.js Environment**:
-    *   Install dependencies: `npm install`
-    *   Run tests: `npm test`
+## 📁 Project Structure
+- `t1dsim_ai/`: Core Digital Twin modeling and simulation engine.
+- `example/`: Python entry points for the simulation (`runDigitalTwin.py`) and Web App (`app.py`).
+- `mobile-interface/`: TypeScript engine (`stateEngine.ts`) and mock data generation.
+- `api_server.py`: FastAPI server providing endpoints for simulation data.
+- `src/`: Core Python source code.
 
-## Digital Twin
+## 🛠️ Setup & Installation
 
-The digital twin simulation is located in `example/runDigitalTwin.py`.
-Run it with: `python example/runDigitalTwin.py`
+### Python Environment (Simulation & Backend)
+1.  **Create a virtual environment**:
+    ```bash
+    python -m venv .venv
+    # Windows:
+    .venv\Scripts\activate
+    # Mac/Linux:
+    source .venv/bin/activate
+    ```
+2.  **Install dependencies**:
+    ```bash
+    pip install -e .
+    pip install -r requirements.txt
+    ```
 
-## Mobile Interface Logic
+### Node.js Environment (Mobile Logic)
+1.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-The logic for the mobile app is in `mobile-interface/logic`.
+## 🏃 Running the Project
 
-*   `glucoseStates.ts`: Glucose state classification logic.
-*   `mockGlucoseData.ts`: Generates mock glucose data.
-*   `stateEngine.ts`: Integrates data and classification.
+### 1. Digital Twin CLI Simulation
+Run a baseline simulation showing glucose predictions vs actual data:
+```bash
+cd example
+python runDigitalTwin.py
+```
 
-### Generating Mock Data
+### 2. Web Interface
+Start the interactive dashboard:
+```bash
+cd example
+python app.py
+```
+*Access at: http://localhost:5000*
 
-Run: `npx ts-node mobile-interface/logic/generateData.ts`
+### 3. API Server
+Run the FastAPI backend for mobile data integration:
+```bash
+python api_server.py
+```
+*Access at: http://localhost:8000*
 
-### Testing Logic
+### 4. Mobile Logic (Mock Data Generation)
+Generate simulated glucose data for the mobile state engine:
+```bash
+npx ts-node mobile-interface/logic/generateData.ts
+```
 
-Run: `npx jest`
+## 🧪 Testing
 
+- **Python Tests**: `pytest`
+- **Mobile Logic Tests**: `npm test`
+
+## 📚 Further Documentation
+- [Quick Start Guide](QUICKSTART.md)
+- [API Documentation](API.md)
+- [Architecture Overview](ARCHITECTURE.md)
+- [FAQ](FAQ.md)
+
+---
+*Maintained by the Greens Health Team.*
