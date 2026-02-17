@@ -27,13 +27,13 @@ class TimeManager:
         self.local_tz = self._detect_local_timezone()
         
     def _detect_local_timezone(self) -> ZoneInfo:
-        """Detect the local system timezone"""
-        try:
-            # Try to get local timezone name
-            local_tz_name = time.tzname[0]
-            return ZoneInfo('UTC')  # Default to UTC if detection fails
-        except:
-            return ZoneInfo('UTC')
+        """
+        Detect the local system timezone
+        Currently defaults to UTC for consistency across deployments
+        """
+        # Default to UTC for consistency
+        # In production, could use tzlocal library for better detection
+        return ZoneInfo('UTC')
     
     def now(self, timezone: Optional[str] = None) -> datetime:
         """

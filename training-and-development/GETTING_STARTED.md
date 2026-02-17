@@ -41,7 +41,8 @@ python time_manager.py
 
 **Quick Example**:
 ```python
-from cgm_experiments.eating_tracker import EatingExperiment
+# From within the cgm-experiments directory
+from eating_tracker import EatingExperiment
 
 # Create experiment
 experiment = EatingExperiment("Oatmeal Test", "user_001")
@@ -108,7 +109,11 @@ python cgm_endpoints.py
 
 **Quick Example**:
 ```python
-from base_time.utils.time_manager import TimeManager
+# From within the base-time directory
+import sys
+sys.path.insert(0, 'utils')
+from time_manager import TimeManager
+from datetime import timedelta
 
 # Create time manager
 time_mgr = TimeManager()
@@ -120,8 +125,9 @@ now = time_mgr.now()
 display_time = time_mgr.format_display_time(now, 'short')
 print(f"Current time: {display_time}")
 
-# Calculate time ago
-time_ago = time_mgr.time_ago(now)
+# Calculate time ago for a past reading
+past_reading = now - timedelta(minutes=30)
+time_ago = time_mgr.time_ago(past_reading)
 print(f"Last reading: {time_ago}")
 ```
 
