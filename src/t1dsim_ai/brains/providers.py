@@ -77,7 +77,7 @@ class OpenAIProvider(BrainProvider):
             "You are Greens Health's assistant. Write a short, calm, senior-friendly explanation. "
             "Avoid medical diagnosis. Do not mention HIPAA. Use simple words.\n\n"
             f"Sanitized simulation summary (no PHI): {json.dumps(context)}\n\n"
-            "Reply in 2-4 sentences."
+            "Reply in one very short sentence."
         )
 
         resp = openai.ChatCompletion.create(
@@ -118,7 +118,7 @@ class GroqProvider(BrainProvider):
             "You are Greens Health's assistant. Write a short, calm, senior-friendly explanation. "
             "Avoid medical diagnosis. Use simple words.\n\n"
             f"Sanitized simulation summary: {json.dumps(context)}\n\n"
-            "Reply in 2-4 sentences."
+            "Reply in one very short sentence."
         )
 
         resp = openai.ChatCompletion.create(
@@ -149,10 +149,10 @@ class OllamaProvider(BrainProvider):
     def generate_explanation(self, context: Dict[str, Any]) -> str:
         url = f"{self.base_url}/api/generate"
         prompt = (
-            "Write a short, calm, senior-friendly explanation of the simulation summary. "
+            "Write an extremely short, calm, senior-friendly explanation of the simulation summary. "
             "Avoid clinical jargon and do not diagnose.\n\n"
             f"Summary: {json.dumps(context)}\n\n"
-            "Reply in 2-4 sentences."
+            "Reply in one sentence only."
         )
 
         payload = {"model": self.model, "prompt": prompt, "stream": False}

@@ -88,4 +88,18 @@ class BrainOrchestrator:
             explanation = MockBrainProvider().generate_explanation(sanitized_summary)
             explanation = f"[AI Error: {e}] {explanation}"
 
-        return {"success": True, "explanation": explanation, "summary_stats": sanitized_summary}
+        # 5) Include simulation series for frontend graphing
+        # We return a list of {time_mins, glucose} points
+        simulation_data = []
+        if "cgm_NNDT" in results.columns:
+            simulation_data = [
+                {"time_mins": int(i * 5), "glucose": round(float(v), 1)}
+                for i, v in enumerate(results.cgm_NNDT.values)
+            ]
+
+        return {
+            "success": True,
+            "explanation": explanation,
+            "summary_stats": sanitized_summary,
+            "simulation_data": simulation_data,
+        }

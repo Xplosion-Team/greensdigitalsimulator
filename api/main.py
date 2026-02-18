@@ -2,6 +2,7 @@ import os
 from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, Form, Response
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from twilio.twiml.messaging_response import MessagingResponse
 
@@ -9,6 +10,22 @@ from t1dsim_ai.brains.orchestrator import BrainOrchestrator
 
 
 app = FastAPI(title="Greens Digital Twin Brain API", version="0.1.0")
+
+# Enable CORS for frontend development
+origins = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class BrainQueryRequest(BaseModel):

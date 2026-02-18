@@ -6,6 +6,7 @@ import { ScrollStory } from "@/components/ScrollStory";
 import { TrustSection } from "@/components/TrustSection";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
+import { BrainQuery } from "@/components/BrainQuery";
 
 const Index = () => {
   return (
@@ -29,6 +30,9 @@ const Index = () => {
 
         {/* Trust / Explainability Section */}
         <TrustSection />
+
+        {/* Brain Interaction Loop */}
+        <BrainQuery />
 
         {/* Final CTA */}
         <CTASection />
