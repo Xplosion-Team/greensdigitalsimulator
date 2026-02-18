@@ -727,6 +727,16 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 ---
 
+### Module E: Agentic Workflows (The Guardian)
+
+- **File**: `modules/agentic-workflow-automation.md`
+- [ ] Understand "Function Calling" (Tools)
+- [ ]Lab 1: The "Mom, I'm High" Alert (Email/SMS)
+- [ ]Lab 2: The "Doctor, I Need You" Scheduler
+- [ ]Lab 3: The "Control Room" (System Prompts)
+
+---
+
 ## 🧠 Key Concept: API (Application Programming Interface)
 
 *For the absolute beginner.*

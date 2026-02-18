@@ -36,7 +36,8 @@ training-and-development/
 │   ├── cgm-baseline-training.md # Coffee experiments & baseline
 │   ├── server-integration-brains.md # Lovable & Replit integration
 │   ├── api-development-brains.md    # Architecture & Design Patterns
-│   └── database-vibe-coding.md      # Prompt-Driven Database Integration
+│   ├── database-vibe-coding.md      # Prompt-Driven Database Integration
+│   └── agentic-workflow-automation.md # Automated Alerts & Scheduling
 │
 ├── progress/                 # Weekly summaries
 │   ├── week1-summary.md      # (To be created)
