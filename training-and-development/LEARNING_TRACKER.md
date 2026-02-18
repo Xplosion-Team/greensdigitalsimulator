@@ -1,4 +1,5 @@
 # 🎓 Mirna's Learning Module Tracker
+
 ## Greens Health Digital Twin - Training Progress
 
 **Start Date**: February 1, 2026  
@@ -29,6 +30,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ## 🗓 Week 1: Digital Twin Fundamentals
+
 **Dates**: Feb 1-7, 2026  
 **Status**: 🔴 Not Started  
 **Completion**: 0/5 days
@@ -36,6 +38,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Daily Checklist
 
 #### Monday: Environment Setup
+
 - [ ] Verify Antigravity AI is working
 - [ ] Check Python installation (3.10+)
 - [ ] Check Node.js installation (18+)
@@ -45,11 +48,12 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Time Spent**: 0 hours  
 **Blockers**: None  
-**Notes**: 
+**Notes**:
 
 ---
 
 #### Tuesday: Explore the Digital Twin
+
 - [ ] Read `individual_model.py`
 - [ ] Read `runDigitalTwin.py`
 - [ ] Run the digital twin simulation
@@ -57,11 +61,12 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Time Spent**: 0 hours  
 **Blockers**: None  
-**Notes**: 
+**Notes**:
 
 ---
 
 #### Wednesday: Define Glucose States
+
 - [ ] Create `mobile-interface/logic/` directory
 - [ ] Create `glucoseStates.ts`
 - [ ] Define state types (Stable, Trending High, etc.)
@@ -70,13 +75,14 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Time Spent**: 0 hours  
 **Blockers**: None  
-**Notes**: 
+**Notes**:
 
 **Deliverable**: `glucoseStates.ts` ✗
 
 ---
 
 #### Thursday: Mock Data Generation
+
 - [ ] Create `mockGlucoseData.ts`
 - [ ] Generate 24-hour glucose patterns
 - [ ] Export as JSON
@@ -84,13 +90,14 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Time Spent**: 0 hours  
 **Blockers**: None  
-**Notes**: 
+**Notes**:
 
 **Deliverable**: `mockGlucoseData.json` ✗
 
 ---
 
 #### Friday: Integration & Review
+
 - [ ] Create `stateEngine.ts`
 - [ ] Integrate classification + mock data
 - [ ] Test full pipeline
@@ -99,27 +106,29 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Time Spent**: 0 hours  
 **Blockers**: None  
-**Notes**: 
+**Notes**:
 
 **Deliverable**: `stateEngine.ts` ✗
 
 ---
 
 ### Week 1 Summary
+
 **Total Time Spent**: 0 hours  
 **Deliverables Completed**: 0/3  
-**Key Learnings**: 
-- 
+**Key Learnings**
+-
 
-**Challenges Faced**: 
-- 
+**Challenges Faced**
+-
 
-**Questions for Next Week**: 
-- 
+**Questions for Next Week**
+-
 
 ---
 
 ## 🗓 Week 2: Interpretation Layer
+
 **Dates**: Feb 8-14, 2026  
 **Status**: 🔴 Not Started  
 **Completion**: 0/5 days
@@ -127,6 +136,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Daily Checklist
 
 #### Monday-Tuesday: Message Templates
+
 - [ ] Create `messageTemplates.ts`
 - [ ] Define patient messages
 - [ ] Define caregiver messages
@@ -139,6 +149,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Wednesday-Thursday: Contextual Recommendations
+
 - [ ] Extend message system
 - [ ] Add time-of-day context
 - [ ] Add meal context
@@ -151,6 +162,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Friday: LLM Integration Prep
+
 - [ ] Create `llmPromptBuilder.ts`
 - [ ] Format glucose data for LLM
 - [ ] Design prompt structure
@@ -163,15 +175,17 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Week 2 Summary
+
 **Total Time Spent**: 0 hours  
 **Deliverables Completed**: 0/3  
-**Key Learnings**: 
+**Key Learnings**:
 
-**Challenges Faced**: 
+**Challenges Faced**:
 
 ---
 
 ## 🗓 Week 3: Mobile UI Foundation
+
 **Dates**: Feb 15-21, 2026  
 **Status**: 🔴 Not Started  
 **Completion**: 0/5 days
@@ -179,6 +193,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Daily Checklist
 
 #### Monday: Initialize Expo Project
+
 - [ ] Create Expo project
 - [ ] Configure TypeScript
 - [ ] Run on iOS simulator
@@ -190,6 +205,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Tuesday-Wednesday: Build State Display Screen
+
 - [ ] Create `GlucoseStatusScreen.tsx`
 - [ ] Add state badge component
 - [ ] Add glucose display
@@ -203,6 +219,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Thursday-Friday: Connect Mock Data
+
 - [ ] Import mock glucose data
 - [ ] Connect to state engine
 - [ ] Display current state
@@ -216,13 +233,15 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Week 3 Summary
+
 **Total Time Spent**: 0 hours  
 **Deliverables Completed**: 0/3  
-**Key Learnings**: 
+**Key Learnings**:
 
 ---
 
 ## 🗓 Week 4: Voice & Accessibility
+
 **Dates**: Feb 22-28, 2026  
 **Status**: 🔴 Not Started  
 **Completion**: 0/5 days
@@ -230,6 +249,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Daily Checklist
 
 #### Monday-Tuesday: Text-to-Speech
+
 - [ ] Install `expo-speech`
 - [ ] Add auto-read functionality
 - [ ] Add manual read button
@@ -242,6 +262,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Wednesday-Thursday: Voice Commands
+
 - [ ] Research speech recognition options
 - [ ] Implement voice input
 - [ ] Add command parsing
@@ -254,6 +275,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Friday: Accessibility Audit
+
 - [ ] Test with VoiceOver
 - [ ] Check color contrast
 - [ ] Verify touch target sizes
@@ -267,13 +289,15 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Week 4 Summary
+
 **Total Time Spent**: 0 hours  
 **Deliverables Completed**: 0/3  
-**Key Learnings**: 
+**Key Learnings**:
 
 ---
 
 ## 🗓 Week 5-6: Integration & Advanced Features
+
 **Dates**: Mar 1-15, 2026  
 **Status**: 🔴 Not Started  
 **Completion**: 0/10 days
@@ -281,6 +305,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Week 5: Python-to-Mobile Bridge
 
 #### Days 1-3: API Development
+
 - [ ] Choose API framework (Flask/FastAPI)
 - [ ] Create API endpoint
 - [ ] Connect to digital twin
@@ -293,6 +318,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 #### Days 4-5: Real-Time Predictions
+
 - [ ] Update mobile app to call API
 - [ ] Display predictions
 - [ ] Add "What if" scenarios
@@ -307,6 +333,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ### Week 6: CGM Integration Prep
 
 #### Days 1-5: Research & Planning
+
 - [ ] Research Dexcom API
 - [ ] Document authentication requirements
 - [ ] Create mock CGM data stream
@@ -320,15 +347,17 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Week 5-6 Summary
+
 **Total Time Spent**: 0 hours  
 **Deliverables Completed**: 0/3  
-**Key Learnings**: 
+**Key Learnings**:
 
 ---
 
 ## 📈 Skills Development Tracker
 
 ### TypeScript
+
 - [ ] Basic syntax (variables, functions, types)
 - [ ] Interfaces and type definitions
 - [ ] Async/await patterns
@@ -342,6 +371,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### React Native / Expo
+
 - [ ] Component basics
 - [ ] Props and state
 - [ ] Styling with StyleSheet
@@ -355,6 +385,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Digital Twin Concepts
+
 - [ ] Glucose-insulin dynamics
 - [ ] State classification
 - [ ] Predictive modeling
@@ -368,6 +399,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Accessibility
+
 - [ ] WCAG guidelines
 - [ ] Screen reader compatibility
 - [ ] Color contrast
@@ -381,6 +413,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Vibe Coding with Antigravity
+
 - [ ] Effective prompt writing
 - [ ] Code review and iteration
 - [ ] Debugging with AI assistance
@@ -396,6 +429,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ## 🎯 Deliverables Checklist
 
 ### Core Logic (Weeks 1-2)
+
 - [ ] `glucoseStates.ts` - State classification
 - [ ] `mockGlucoseData.json` - 24hr mock data
 - [ ] `stateEngine.ts` - Full pipeline
@@ -407,6 +441,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Mobile Interface (Weeks 3-4)
+
 - [ ] Expo project initialized
 - [ ] `GlucoseStatusScreen.tsx` - Main screen
 - [ ] State badge component
@@ -419,6 +454,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Integration (Weeks 5-6)
+
 - [ ] Python API server
 - [ ] API documentation
 - [ ] Prediction feature
@@ -436,36 +472,43 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 **Attendees**: Mirna, Kehlin, [Others]
 
 #### What Went Well
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Challenges Encountered
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Solutions Implemented
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Key Learnings
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Questions for Mentor
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Next Week Goals
-1. 
-2. 
-3. 
+
+1.
+2.
+3.
 
 #### Action Items
+
 - [ ] [Action] - Owner: [Name] - Due: [Date]
 - [ ] [Action] - Owner: [Name] - Due: [Date]
 
@@ -482,16 +525,19 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ## 💡 Learning Resources Used
 
 ### Documentation
+
 - [ ] [Expo Documentation](https://docs.expo.dev/)
 - [ ] [React Native Docs](https://reactnative.dev/)
 - [ ] [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [ ] [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
 ### Tutorials Completed
-- [ ] 
-- [ ] 
+
+- [ ]
+- [ ]
 
 ### Antigravity Conversations
+
 - [ ] Week 1 - Environment Setup
 - [ ] Week 1 - State Classification
 - [ ] Week 2 - Message Templates
@@ -504,6 +550,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ## 🎓 Mentor Feedback Log
 
 ### Week 1 Feedback (Date: ______)
+
 **Reviewer**: Kehlin Swain
 
 **Code Quality**: ☐ Excellent ☐ Good ☐ Needs Improvement  
@@ -512,13 +559,13 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Comments**:
 
-
-**Action Items**:
-- 
+**Action Items**
+-
 
 ---
 
 ### Week 2 Feedback (Date: ______)
+
 **Reviewer**: Kehlin Swain
 
 **Code Quality**: ☐ Excellent ☐ Good ☐ Needs Improvement  
@@ -527,9 +574,8 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 **Comments**:
 
-
-**Action Items**:
-- 
+**Action Items**
+-
 
 ---
 
@@ -560,6 +606,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ## 🎯 Success Criteria (End of 6 Weeks)
 
 ### Technical Deliverables
+
 - [ ] Working mobile app on iOS simulator
 - [ ] Glucose state classification logic
 - [ ] Plain-language message system
@@ -573,6 +620,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Learning Outcomes
+
 - [ ] Can write TypeScript functions independently
 - [ ] Can create React Native components
 - [ ] Understands digital twin concepts
@@ -584,6 +632,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ---
 
 ### Soft Skills
+
 - [ ] Comfortable asking questions
 - [ ] Can debug errors independently
 - [ ] Documents work clearly
@@ -608,6 +657,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 ## 🔄 How to Use This Tracker
 
 ### Daily
+
 1. Check today's tasks
 2. Mark items as complete ✓
 3. Log time spent
@@ -615,6 +665,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 5. Update progress bars
 
 ### Weekly
+
 1. Complete weekly summary
 2. Prepare for Friday review
 3. Update skills tracker
@@ -622,6 +673,7 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 5. Plan next week
 
 ### As Needed
+
 1. Add blockers to issues log
 2. Record learning resources
 3. Update achievements
@@ -629,8 +681,81 @@ Week 6: [░░░░░░░░░░] 0%  - Integration (Part 2)
 
 ---
 
-**Last Updated**: January 31, 2026  
-**Next Review**: February 7, 2026 (End of Week 1)
+---
+
+## 🎓 Specialization Modules
+
+### Module A: CGM Baseline Experiments
+
+- **File**: `modules/cgm-baseline-training.md`
+- [ ] Read the Coffee Series guide
+- [ ] Log "Before" morning baseline
+- [ ] Run Black Coffee vs. Water test
+- [ ] Run Timing test (Before/After food)
+- [ ] Submit personal tracker results
+
+### Module B: Server & Brains Integration
+
+- **File**: `modules/server-integration-brains.md`
+- [ ] Review Replit DevOps prompt
+- [ ] Verify CORS setup for Lovable
+- [ ] Test `POST /v1/brain/query` with frontend
+- [ ] Confirm GitHub Sync is enabled in Lovable
+
+---
+
+**Last Updated**: February 17, 2026  
+
+### Module C: API Development & Design Patterns
+
+- **File**: `modules/api-development-brains.md`
+- [ ] Diagram the `BrainOrchestrator` flow
+- [ ] Identify Strategy & Chain of Responsibility patterns
+- [ ] Challenge A: Implement `AnthropicProvider` (Claude)
+- [ ] Challenge B: Refactor to Functional Paradigm
+
+---
+
+**Last Updated**: February 17, 2026
+
+### Module D: Vibe Coding a Database
+
+- **File**: `modules/database-vibe-coding.md`
+- [ ] Prompt AI for Schema (GlucoseReading model)
+- [ ] Prompt AI for CRUD Routes (POST/GET)
+- [ ] Verify data persistence with `examine_db.py`
+
+---
+
+## 🧠 Key Concept: API (Application Programming Interface)
+
+*For the absolute beginner.*
+
+### The "Waiter" Analogy
+
+Imagine you are at a restaurant.
+
+- **You (The Client/Frontend)**: You are hungry and want food, but you can't just walk into the kitchen and start cooking.
+- **The Kitchen (The Server/Backend)**: This is where the raw ingredients (data) are turned into a meal (response). It's complex and messy.
+- **The Waiter (The API)**: You give your order to the waiter. The waiter takes it to the kitchen, tells them what to do, and brings the food back to you.
+
+**In this project:**
+
+- **Lovable (React)** is You. It has a button that says "Ask Brain".
+- **Python (Replit)** is The Kitchen. It has the glucose simulation logic.
+- **FastAPI** is The Waiter. It takes the message from Lovable (`POST /v1/brain/query`), hands it to Python, and brings the prediction back to the screen.
+
+### 📚 Recommended Resources
+
+- [MDN Web Docs: Introduction to Web APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction) - The gold standard.
+- [freeCodeCamp: APIs for Beginners](https://www.freecodecamp.org/news/what-is-an-api-in-english-please/) - Plain English explanation.
+- [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/first-steps/) - The specific tool we are using.
+
+---
+
+**Last Updated**: February 17, 2026
+**Next Milestone**: Module A Completion
+ (End of Week 1)
 
 ---
 
