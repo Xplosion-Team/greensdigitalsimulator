@@ -1,8 +1,15 @@
 # 🎓 Training & Development
+>
+> *Building the bridge between Biology and Bytecode.*
 
-## Mirna's Learning Journey - Greens Health Digital Twin
+## 🚀 START HERE: [Mirna's Master Training Plan](./MIRNA_TRAINING_PLAN.md)
 
-Welcome to your training workspace! This folder contains everything you need to build the glucose digital twin mobile interface.
+**This is your customized curriculum, ordered by importance.**
+
+## 📂 Module Directory
+
+Key documentation and learning resources for the **Greens Digital Simulator**.
+ything you need to build the glucose digital twin mobile interface.
 
 ---
 
