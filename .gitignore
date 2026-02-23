@@ -163,3 +163,10 @@ cython_debug/
 # files
 data/
 results/
+mobile-interface/app/node_modules/@babel/helper-member-expression-to-functions/package.json
+mobile-interface/app/package-lock.json
+mobile-interface/app/package-lock.json
+mobile-interface/app/node_modules/.package-lock.json
+mobile-interface/app/package-lock.json
+mobile-interface/app/package-lock.json
+node_modules

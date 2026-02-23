@@ -100,7 +100,36 @@ cd example
 python app.py
 ```
 
+<<<<<<< Updated upstream
 Then open your browser to `http://localhost:5000` to access the interactive interface.
+=======
+### 3. API Server
+Run the FastAPI backend for mobile data integration:
+```bash
+python api_server.py
+```
+*Access at: http://localhost:8000*
+
+### 4. Mobile Logic (Unit Tests)
+Verify the mobile interface logic and classification engine:
+```bash
+npm test
+```
+
+## ⚠️ Known Issues
+- **Digital Twin Recursion Error**: The core simulation engine currently encounters a `RecursionError` during model loading. This is being investigated (likely related to scikit-learn versioning).
+- **Missing Mock Data Script**: The `mockGlucoseData.ts` utility is currently missing from the repository, affecting standalone `stateEngine.ts` execution.
+
+## 🧪 Testing
+- **Python Setup**: `pip install -e .`
+- **Mobile Logic Tests**: `npm test`
+
+## 📚 Further Documentation
+- [Quick Start Guide](QUICKSTART.md)
+- [API Documentation](API.md)
+- [Architecture Overview](ARCHITECTURE.md)
+- [FAQ](FAQ.md)
+>>>>>>> Stashed changes
 
 ---
 
