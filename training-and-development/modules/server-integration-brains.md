@@ -12,7 +12,7 @@
 
 In modern AI development, we use the best tool for each job:
 
-1. **The Brain (Backend)**: Written in **Python**. It handles complex logic, data simulation (like our glucose engine), and heavy AI processing. It lives on a server (Replit/Railway).
+1. **The Brain (Backend)**: Written in **Python**. It handles complex logic, data simulation (like our glucose engine), and heavy AI processing. It lives on a server like **Railway** (production) or **Replit** (prototyping).
 2. **The Face (Frontend)**: Written in **React/TypeScript**. It provides a snappy, beautiful user interface. It lives in the browser (Lovable/Vite).
 
 #### The Bridge: REST API & CORS
@@ -44,10 +44,53 @@ To let The Face talk to The Brain, we use a **REST API**.
 *Goal: Give Lovable a map of our capabilities.*
 > **Agent Prompt**: "Generate a `openapi.json` file based on the FastAPI app. Save it to the root directory so I can copy it."
 
-#### Phase D: The Launch
+#### Phase D: The Launch (Railway)
 
-*Goal: Keep it running 24/7.*
-> **Agent Prompt**: "Configure the `.replit` file to run `uvicorn api.main:app --host 0.0.0.0 --port 80`. Set up an 'Always On' deployment so the public URL never sleeps."
+*Goal: Deploy to professional production hosting.*
+
+1. **Connect GitHub**: Navigate to [Railway](https://railway.app), create a new project, and connect this repository.
+2. **Auto-Detect**: Railway will see your `Procfile` and `requirements.txt`.
+3. **Set Port**: Ensure the `PORT` variable is automatically injected (Railway does this by default).
+4. **Environment Variables**: Add your `OPENAI_API_KEY` and `BRAIN_PROVIDER` in the 'Variables' tab.
+
+---
+
+### 🧪 Unit 2.5: The Handshake (Testing Your Live API)
+
+*Before you go to Lovable, verify your backend is actually talking.*
+
+#### 1. The Health Check
+
+```bash
+curl https://greensdigitalsimulator-production.up.railway.app/health
+```
+
+*Expected: `{"ok":true}`*
+
+#### 2. The Brain Query
+
+```bash
+curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/brain/query \
+-H "Content-Type: application/json" \
+-d '{
+  "text": "What happens if I eat 60g of carbs?",
+  "current_glucose": 110.0,
+  "digital_twin_id": 1
+}'
+```
+
+#### 3. The Timeline Prediction (For Charts!)
+
+```bash
+curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/predict/timeline \
+-H "Content-Type: application/json" \
+-d '{
+  "current_glucose": 115.0,
+  "carbs": 75.0,
+  "meal_time_offset": 30,
+  "digital_twin_id": 1
+}'
+```
 
 ---
 
@@ -68,7 +111,8 @@ To let The Face talk to The Brain, we use a **REST API**.
 > 1. A number input for 'Current Glucose'.
 > 2. A text input for 'Question' (e.g., 'What should I eat?').
 > 3. A 'Ask Brain' button that triggers the `POST /v1/brain/query` endpoint.
-> 4. A display area for the AI's 'explanation' and a simple line chart for the 'simulation_data'."
+> 4. A **Line Chart** that renders the `timeline` data from the `POST /v1/predict/timeline` endpoint.
+> 5. A display area for the AI's 'explanation' and key statistics.
 
 #### Step 3: GitHub Sync
 
