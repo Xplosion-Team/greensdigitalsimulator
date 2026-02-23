@@ -109,8 +109,11 @@ async def sms_reply(Body: str = Form(...), From: str = Form(...)):
     # 1. Initialize Brain
     # Note: Currently uses a hardcoded digital_twin_id=1 (Phase 7 prototype).
     # In Phase 3 (Data Integration), we will fetch 'From' user's real-time glucose.
+    # Provider defaults to env (BRAIN_PROVIDER) unless overridden.
+    provider = os.getenv("BRAIN_PROVIDER", "fallback")
+    
     brain = BrainOrchestrator(
-        provider="fallback",
+        provider=provider,
         digital_twin_id=1,
     )
 
