@@ -147,13 +147,13 @@ A structured curriculum designed to take developers from domain basics to buildi
 
 ### [View Full Training Plan](training-and-development/MIRNA_TRAINING_PLAN.md)
 
-| Phase | Module | Goal |
-|-------|--------|------|
-| 1. Foundation | [CGM Baseline](training-and-development/modules/cgm-baseline-training.md) | Understand glucose dynamics and TIR. |
-| 2. Blueprint | [API Strategy](training-and-development/modules/api-development-brains.md) | Learn headless design (Python + Lovable). |
-| 3. Bridge | [Server Integration](training-and-development/modules/server-integration-brains.md) | Connect frontend to backend API. |
-| 4. Memory | [Database Vibe Coding](training-and-development/modules/database-vibe-coding.md) | Implement persistent storage using AI. |
-| 5. Guardian | [Agentic Workflows](training-and-development/modules/agentic-workflow-automation.md) | Automate care with SMS alerts and tools. |
+| Phase          | Module                                                                                | Goal                                    |
+| -------------- | ------------------------------------------------------------------------------------- | --------------------------------------- |
+| 1. Foundation  | [CGM Baseline](training-and-development/modules/cgm-baseline-training.md)             | Understand glucose dynamics and TIR.    |
+| 2. Blueprint   | [API Strategy](training-and-development/modules/api-development-brains.md)           | Learn headless design (Python + Lovable). |
+| 3. Bridge      | [Server Integration](training-and-development/modules/server-integration-brains.md)   | Connect frontend to backend API.        |
+| 4. Memory      | [Database Vibe Coding](training-and-development/modules/database-vibe-coding.md)      | Implement persistent storage using AI.  |
+| 5. Guardian    | [Agentic Workflows](training-and-development/modules/agentic-workflow-automation.md) | Automate care with SMS alerts and tools. |
 
 ---
 
