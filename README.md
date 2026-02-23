@@ -31,24 +31,28 @@ This framework provides a revolutionary tool for pre-clinical testing of new tec
 ## ✨ Key Features
 
 ### 🧠 Neural Network Digital Twins
+
 - **Physiologically-constrained architecture** ensuring realistic glucose-insulin dynamics
 - **Adaptive models** that capture both inter- and intra-individual variability
 - **State-space modeling** with observability and interpretability
 - **Multiple validated digital twins** trained on real patient data
 
 ### 📱 Interactive Web Application
+
 - **Real-time visualization** of glucose, insulin, meals, and activity
 - **Interactive controls** for simulation parameters
 - **Beautiful charts** powered by Plotly and Matplotlib
 - **Responsive design** for desktop and mobile
 
 ### 🎤 Voice-Enabled Nutrition Tracking
+
 - **Speech recognition** for hands-free food logging
 - **Comprehensive food database** with 50+ common foods
 - **Automatic carbohydrate calculation** from natural language
 - **Nutrition analysis** with glycemic impact prediction
 
 ### 🔬 Research Capabilities
+
 - **Custom scenario creation** with configurable parameters
 - **Population-level and individual models** for comparative analysis
 - **Data export** for further analysis
@@ -59,6 +63,7 @@ This framework provides a revolutionary tool for pre-clinical testing of new tec
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.9 or higher
 - pip package manager
 
@@ -85,6 +90,7 @@ python runDigitalTwin.py
 ```
 
 This will generate a visualization showing:
+
 - Actual CGM (Continuous Glucose Monitor) data
 - Population model predictions
 - Individual digital twin predictions
@@ -101,6 +107,53 @@ python app.py
 ```
 
 Then open your browser to `http://localhost:5000` to access the interactive interface.
+
+---
+
+## 📡 API Examples (CURL)
+
+Test your live backend using these `curl` commands. Replace the URL with your local or production endpoint.
+
+### 🧠 Brain Query
+
+```bash
+curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/brain/query \
+-H "Content-Type: application/json" \
+-d '{
+  "text": "What happens if I eat 60g of carbs?",
+  "current_glucose": 110.0,
+  "digital_twin_id": 1
+}'
+```
+
+### 📈 Timeline Prediction
+
+```bash
+curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/predict/timeline \
+-H "Content-Type: application/json" \
+-d '{
+  "current_glucose": 115.0,
+  "carbs": 75.0,
+  "meal_time_offset": 30,
+  "digital_twin_id": 1
+}'
+```
+
+---
+
+## 🎓 Training & Development (Mirna's Path)
+
+A structured curriculum designed to take developers from domain basics to building autonomous AI agents.
+
+### [View Full Training Plan](training-and-development/MIRNA_TRAINING_PLAN.md)
+
+| Phase | Module | Goal |
+|-------|--------|------|
+| 1. Foundation | [CGM Baseline](training-and-development/modules/cgm-baseline-training.md) | Understand glucose dynamics and TIR. |
+| 2. Blueprint | [API Strategy](training-and-development/modules/api-development-brains.md) | Learn headless design (Python + Lovable). |
+| 3. Bridge | [Server Integration](training-and-development/modules/server-integration-brains.md) | Connect frontend to backend API. |
+| 4. Memory | [Database Vibe Coding](training-and-development/modules/database-vibe-coding.md) | Implement persistent storage using AI. |
+| 5. Guardian | [Agentic Workflows](training-and-development/modules/agentic-workflow-automation.md) | Automate care with SMS alerts and tools. |
 
 ---
 
@@ -128,6 +181,7 @@ print(f"Predicted glucose: {results.cgm_NNDT.mean():.1f} mg/dL")
 ```
 
 **Use Cases**:
+
 - 🍽️ Meal planning: "What will happen if I eat 75g carbs?"
 - 💉 Insulin dosing: "How much insulin do I need for this meal?"
 - 🏃 Exercise planning: "How will activity affect my glucose?"
@@ -153,6 +207,7 @@ print(f"Total carbs logged: {total_carbs}g")
 ```
 
 **Use Cases**:
+
 - 📱 Hands-free logging while cooking or eating
 - ⏱️ Quick meal documentation on-the-go
 - 📊 Building a comprehensive food diary
@@ -188,6 +243,7 @@ for insulin_dose in [4, 6, 8, 10]:
 ```
 
 **Use Cases**:
+
 - 🔬 Testing new insulin pump settings
 - 📈 Evaluating CGM alert thresholds  
 - 🎯 Optimizing carb-to-insulin ratios
@@ -200,12 +256,14 @@ for insulin_dose in [4, 6, 8, 10]:
 **Scenario**: Monitor and visualize glucose dynamics in real-time through a web interface.
 
 **Features**:
+
 - **Real-time charts** showing glucose trends
 - **Interactive controls** for simulation parameters
 - **Scenario comparison** (e.g., different meal sizes)
 - **Statistical analysis** (time in range, mean glucose, variability)
 
 **Launch the web app**:
+
 ```bash
 cd example
 python app.py
@@ -213,6 +271,7 @@ python app.py
 ```
 
 **Use Cases**:
+
 - 👨‍⚕️ Clinical demonstrations and patient education
 - 📚 Diabetes management training
 - 🔬 Research presentations
@@ -251,6 +310,7 @@ predictions = model.simulate(test_data)
 ```
 
 **Use Cases**:
+
 - 🎯 Personalized glucose management
 - 📊 Long-term pattern analysis
 - 🔍 Identifying individual response patterns
@@ -263,12 +323,14 @@ predictions = model.simulate(test_data)
 **Scenario**: Conduct virtual clinical trials for diabetes technologies.
 
 **Research Applications**:
+
 - 🔬 **Algorithm testing**: Evaluate closed-loop control algorithms
 - 📊 **Population studies**: Analyze variability across digital twins
 - 🎯 **Outcome prediction**: Forecast HbA1c and time-in-range metrics
 - 📈 **Treatment optimization**: Compare therapeutic strategies
 
 **Example Research Workflow**:
+
 ```python
 # Load multiple digital twins
 twins = [DigitalTwin(n) for n in range(5)]
@@ -306,6 +368,7 @@ print(summary.describe())
 ### Available Digital Twins
 
 The framework includes 5 pre-trained digital twins:
+
 - **Twin 0**: T1DEXI-01-0102
 - **Twin 1**: T1DEXI-01-0692  
 - **Twin 2**: T1DEXI-01-0794
@@ -372,17 +435,20 @@ logger = VoiceFoodLogger(
 The Flask-based web interface provides:
 
 ### 🎮 Interactive Controls
+
 - **Digital twin selection**: Choose from 5 pre-trained models
 - **Scenario parameters**: Adjust glucose, insulin, meals, activity
 - **Simulation controls**: Play, pause, reset, export
 
 ### 📊 Visualizations
+
 - **Glucose trends**: Real-time CGM predictions
 - **Treatment inputs**: Insulin and meal visualization  
 - **Activity metrics**: Heart rate and sleep efficiency
 - **Statistics dashboard**: Time-in-range, mean, CV%
 
 ### 🎤 Voice Features
+
 - **Food logging**: Speak to log meals
 - **Nutrition analysis**: Automatic carb calculation
 - **Quick add**: Common foods with one tap
@@ -538,4 +604,4 @@ If you use this software in your research, please cite:
 
 [⭐ Star us on GitHub](https://github.com/Xplosion-Team/greensdigitalsimulator) • [🍴 Fork](https://github.com/Xplosion-Team/greensdigitalsimulator/fork) • [📖 Learn More](https://github.com/Xplosion-Team/greensdigitalsimulator/wiki)
 
-</div> 
+</div>
