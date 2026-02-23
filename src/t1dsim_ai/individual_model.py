@@ -752,9 +752,9 @@ class DigitalTwin:
 
         df_scenario[states] = df_scenario[states].astype(float)
 
-        df_scenario.loc[0, states] = dfInitStates.loc[
-            df_scenario.loc[0, states[0]].astype("int64"), states
-        ]
+        # Clamp initial glucose to valid range [40, 400] for lookup
+        init_cgm_clamped = int(max(40, min(400, df_scenario.loc[0, states[0]])))
+        df_scenario.loc[0, states] = dfInitStates.loc[init_cgm_clamped, states]
 
         sim_time = len(df_scenario)
         batch_start = np.array([0], dtype=np.int64)

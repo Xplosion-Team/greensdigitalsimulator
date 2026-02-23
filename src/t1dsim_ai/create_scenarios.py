@@ -41,12 +41,14 @@ def digitalTwin_scenario(
         2 * np.pi * df_scenario["time"].dt.hour / 24
     )
     df_scenario.loc[0, "output_cgm"] = init_cgm
-    df_scenario.loc[
-        np.array(meal_time_fromStart_array) // 5, "input_meal_carbs"
-    ] = meal_size_array
+    # Ensure meal indices are within the simulation range [0, len(df_scenario)-1]
+    meal_indices = np.array(meal_time_fromStart_array) // 5
+    meal_indices = np.clip(meal_indices, 0, len(df_scenario) - 1)
+    
+    df_scenario.loc[meal_indices, "input_meal_carbs"] = meal_size_array
 
     df_scenario["input_insulin"] = basal_insulin
-    df_scenario.loc[np.array(meal_time_fromStart_array) // 5, "input_insulin"] = (
+    df_scenario.loc[meal_indices, "input_insulin"] = (
         12 * np.array(meal_size_array) / carb_ratio
     )
 
