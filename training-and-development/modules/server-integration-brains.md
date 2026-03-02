@@ -1,74 +1,25 @@
-# 🔌 Module: Server Integration (The Brains API)
+# 🔌 Module: Server Integration (Brains)
 
-## A Comprehensive Training Guide: Python Logic + Lovable UI
+## Goal
+Connect your Lovable frontend to your Replit/Backend environment and ensure secure, real-time communication.
 
-**Objective**: Master the "Headless Architecture" by connecting a powerful Python backend (The Brain) to a beautiful React frontend (The Face).
+## The Connection Bridge
+To make the frontend and backend talk, we need two things:
+1. **The URL**: The public address of your server (e.g., `https://my-engine.replit.app`).
+2. **CORS (Cross-Origin Resource Sharing)**: A security feature that allows your frontend domain to request data from your backend domain.
 
----
+## Execution Checklist
+1. **Initialize Replit**: Spin up a FastAPI server using the "Greens Engine" template.
+2. **Setup Environment**: Add your API keys (OpenAI, Anthropic) to the Secret keys in Replit.
+3. **Frontend Config**: In your Lovable project, update the `API_URL` constant.
+4. **Test the Handshake**: Send a "Hello" pulse from the frontend and verify the backend receives it.
 
-### 🏛️ Unit 1: The Concept Corner (Architecture 101)
+- **CORS Error**: Ensure the frontend URL is listed in the `origins` list of the FastAPI middle-ware.
 
-#### Why split the "Brain" from the "Face"?
+## The Brain Query Endpoint
+To get insights from your digital twin, send a POST request to `/v1/brain/query`.
 
-In modern AI development, we use the best tool for each job:
-
-1. **The Brain (Backend)**: Written in **Python**. It handles complex logic, data simulation (like our glucose engine), and heavy AI processing. It lives on a server like **Railway** (production) or **Replit** (prototyping).
-2. **The Face (Frontend)**: Written in **React/TypeScript**. It provides a snappy, beautiful user interface. It lives in the browser (Lovable/Vite).
-
-#### The Bridge: REST API & CORS
-
-To let The Face talk to The Brain, we use a **REST API**.
-
-* **Request**: "Here is my current glucose." (Frontend -> Backend)
-* **Response**: "Here is your prediction." (Backend -> Frontend)
-* **CORS (Cross-Origin Resource Sharing)**: The security guard. We *must* explicitly tell the Python server, "It's okay to accept messages from `lovable.dev`."
-
----
-
-### 🛠️ Unit 2: The Replit DevOps Drill
-
-*Step-by-step prompts to make your Python server production-ready using the Replit Agent.*
-
-#### Phase A: The Diagnosis
-
-*Goal: Ensure the code actually runs before we expose it.*
-> **Agent Prompt**: "Scan the `api/main.py` file. Are all imports installed in `pyproject.toml`? Run the server locally and verify the `/health` endpoint returns 200 OK."
-
-#### Phase B: The Gateway (CORS)
-
-*Goal: Open the doors for Lovable.*
-> **Agent Prompt**: "Update `api/main.py` to enable CORS. Allow origins: `['*']` for development, or specifically `['https://lovable.dev', 'http://localhost:5173']`. Ensure `CORSMiddleware` is added *before* any routes."
-
-#### Phase C: The Contract (OpenAPI)
-
-*Goal: Give Lovable a map of our capabilities.*
-> **Agent Prompt**: "Generate a `openapi.json` file based on the FastAPI app. Save it to the root directory so I can copy it."
-
-#### Phase D: The Launch (Railway)
-
-*Goal: Deploy to professional production hosting.*
-
-1. **Connect GitHub**: Navigate to [Railway](https://railway.app), create a new project, and connect this repository.
-2. **Auto-Detect**: Railway will see your `Procfile` and `requirements.txt`.
-3. **Set Port**: Ensure the `PORT` variable is automatically injected (Railway does this by default).
-4. **Environment Variables**: Add your `OPENAI_API_KEY` and `BRAIN_PROVIDER` in the 'Variables' tab.
-
----
-
-### 🧪 Unit 2.5: The Handshake (Testing Your Live API)
-
-*Before you go to Lovable, verify your backend is actually talking.*
-
-#### 1. The Health Check
-
-```bash
-curl https://greensdigitalsimulator-production.up.railway.app/health
-```
-
-*Expected: `{"ok":true}`*
-
-#### 2. The Brain Query
-
+**Sample Request (Linux/Mac/Bash):**
 ```bash
 curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/brain/query \
 -H "Content-Type: application/json" \
@@ -79,89 +30,23 @@ curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/brain/q
 }'
 ```
 
-#### 3. The Timeline Prediction (For Charts!)
-
-```bash
-curl -X POST https://greensdigitalsimulator-production.up.railway.app/v1/predict/timeline \
--H "Content-Type: application/json" \
--d '{
-  "current_glucose": 115.0,
-  "carbs": 75.0,
-  "meal_time_offset": 30,
-  "digital_twin_id": 1
-}'
+**Sample Request (Windows PowerShell):**
+On Windows, PowerShell uses an alias for `curl`. Use `curl.exe` to ensure you are using the real version, and use double quotes for the data payload:
+```powershell
+curl.exe -X POST https://greensdigitalsimulator-production.up.railway.app/v1/brain/query -H "Content-Type: application/json" -d "{\"text\": \"What happens if I eat 60g of carbs?\", \"current_glucose\": 110.0, \"digital_twin_id\": 1}"
 ```
 
----
+**Key Parameters:**
+- `text`: Your question or meal description.
+- `current_glucose`: Your latest CGM reading.
+- `digital_twin_id`: The ID of your twin profile.
 
-### 🎨 Unit 3: The Lovable Blueprint
+## Run Simulation 🧪
+Test the handshake locally:
+`python simulations/simulate_server_handshake.py`
 
-*How to build the UI and connect it to your new API.*
-
-#### Step 1: The Connection
-
-1. **Copy the Spec**: Open your `openapi.json` from Unit 2. Copy the entire content.
-2. **Lovable Chat**: "I have a backend API. Here is the OpenAPI specification: [PASTE JSON]."
-3. **Verify**: Lovable should say, "I see the `POST /v1/brain/query` endpoint."
-
-#### Step 2: Building the "Brain Interface"
->
-> **Lovable Prompt**: "Create a clean dashboard widget titled 'Digital Twin Query'. It should have:
->
-> 1. A number input for 'Current Glucose'.
-> 2. A text input for 'Question' (e.g., 'What should I eat?').
-> 3. A 'Ask Brain' button that triggers the `POST /v1/brain/query` endpoint.
-> 4. A **Line Chart** that renders the `timeline` data from the `POST /v1/predict/timeline` endpoint.
-> 5. A display area for the AI's 'explanation' and key statistics.
-
-#### Step 3: GitHub Sync
-
-*Crucial for version control.*
-
-1. Click the **GitHub Icon** in the Lovable header.
-2. Select this repository (`greensdigitalsimulator`).
-3. Choose the route: **Sync to `frontend/` folder**.
+Test a real Brain Query:
+`python simulations/simulate_brain_query.py`
 
 ---
-
-### � Unit 4: Brain Surgery (Configuration)
-
-*Configuring the `BrainOrchestrator` to switch between modes.*
-
-Your server supports multiple "Brains" via the `BRAIN_PROVIDER` environment variable.
-
-| Provider | Value | Description | Cost |
-|----------|-------|-------------|------|
-| **Fallback** | `fallback` | Returns hardcoded mock data. Great for UI testing. | **Free** |
-| **OpenAI** | `openai` | Uses GPT-4o for real reasoning. Requires API Key. | **$$$** |
-| **Groq** | `groq` | Ultra-fast inference (Llama 3). Requires API Key. | **$** |
-
-#### Changing Modes (Replit Secrets)
-
-1. Go to **Tools > Secrets** in Replit.
-2. Add `BRAIN_PROVIDER` = `openai`.
-3. Add `OPENAI_API_KEY` = `sk-...`.
-4. **Restart the Server** (Stop/Start) for changes to take effect.
-
----
-
-### 🔧 Unit 5: Troubleshooting Guide
-
-*What to do when the wires get crossed.*
-
-#### 🛑 Error: "Network Error" or "Failed to fetch" on Frontend
-
-* **Cause**: The API server is down, OR the URL is wrong, OR CORS is blocking it.
-* **Fix**:
-    1. Check the API URL in your browser (e.g., `https://my-repl.co/health`). If it spins, the server is down.
-    2. Check the Browser Console (F12). Looking for "CORS policy: No 'Access-Control-Allow-Origin' header". -> **Redo Phase B**.
-
-#### 🛑 Error: "500 Internal Server Error"
-
-* **Cause**: The Python code crashed (bug).
-* **Fix**: Check the **Console/Shell logs** in Replit. It will show the Python traceback. Did you forget an Environment Variable?
-
-#### 🛑 Error: "422 Unprocessable Entity"
-
-* **Cause**: You sent the wrong data format.
-* **Fix**: Check the `POST` body. Did you send "glucose" as a string instead of a float? Lovable might be hallucinating the schema. **Redo Step 1** in Unit 3.
+*Back to [Training Plan](../MIRNA_TRAINING_PLAN.md)*
