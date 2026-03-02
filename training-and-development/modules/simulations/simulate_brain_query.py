@@ -25,15 +25,15 @@ def simulate_real_query(text_query, glucose=110.0, twin_id=1):
         
         if response.status_code == 200:
             data = response.json()
-            print("\n✅ Response Received:")
+            print("\n[SUCCESS] Response Received:")
             print(f"Explanation: {data.get('explanation')[:200]}...") # Truncated for display
             print("\nStats:")
             print(json.dumps(data.get('summary_stats'), indent=2))
         else:
-            print(f"❌ Error: {response.status_code} - {response.text}")
+            print(f"[ERROR] Error: {response.status_code} - {response.text}")
             
     except Exception as e:
-        print(f"⚠️ Connection Failed: {str(e)}")
+        print(f"[WARN] Connection Failed: {str(e)}")
         print("Falling back to local mock...")
         # Mock fallback
         mock_response = {

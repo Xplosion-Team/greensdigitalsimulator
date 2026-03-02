@@ -11,11 +11,11 @@ def simulate_handshake(frontend_origin):
     time.sleep(0.5)
     
     if frontend_origin in allowed_origins:
-        print("✅ [CORS] Permission Granted.")
-        print("💓 [PULSE] Backend is alive and talking to frontend.")
+        print("[PASS] [CORS] Permission Granted.")
+        print("[INFO] [PULSE] Backend is alive and talking to frontend.")
     else:
-        print("❌ [CORS] Permission Denied: Origin not recognized.")
-        print("⚠️ [DEBUG] Please add this URL to your FastAPI origins list.")
+        print("[FAIL] [CORS] Permission Denied: Origin not recognized.")
+        print("[WARN] [DEBUG] Please add this URL to your FastAPI origins list.")
 
 if __name__ == "__main__":
     simulate_handshake("https://lovable.dev")

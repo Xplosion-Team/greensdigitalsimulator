@@ -8,7 +8,7 @@ import random
 
 def simulate_coffee_spike(with_sugar=False):
     print(f"\n--- Starting Coffee Experiment (Sugar: {with_sugar}) ---")
-    glucose = 100  # Baseline mg/dL
+    glucose = 180  # Baseline mg/dL
     trend = "Stable"
     
     for minute in range(0, 120, 10):

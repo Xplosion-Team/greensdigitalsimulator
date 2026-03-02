@@ -14,13 +14,13 @@ class DigitalTwinGuardian:
         print(f"\n[AGENT] Evaluating current glucose: {glucose_value} mg/dL")
         
         if glucose_value > self.threshold:
-            print(f"🚨 [DECISION] Emergency! Glucose is above {self.threshold}.")
+            print(f"[DANGER] [DECISION] Emergency! Glucose is above {self.threshold}.")
             self.trigger_tool("SMS_Alert", "Mom, my glucose is dangerous!")
         elif glucose_value > 150:
-            print("⚠️ [DECISION] High. Suggesting a walk.")
+            print("[WARN] [DECISION] High. Suggesting a walk.")
             self.trigger_tool("Recommendation", "Consider a 10-minute walk.")
         else:
-            print("✅ [DECISION] All clear. Keep it up!")
+            print("[OK] [DECISION] All clear. Keep it up!")
 
     def trigger_tool(self, tool_name, message):
         print(f"[TOOL] Executing {tool_name}...")

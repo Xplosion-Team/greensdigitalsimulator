@@ -21,19 +21,19 @@ def vibe_db_demo():
         source TEXT
     )
     ''')
-    print("✅ Table 'GlucoseReadings' created via AI-generated schema.")
+    print("[SUCCESS] Table 'GlucoseReadings' created via AI-generated schema.")
     
     # 3. Create (Insert)
     now = datetime.now().isoformat()
     cursor.execute("INSERT INTO GlucoseReadings (value, timestamp, source) VALUES (?, ?, ?)", 
                    (125.5, now, "Simulation"))
     conn.commit()
-    print(f"✅ Data Inserted: 125.5 mg/dL at {now}")
+    print(f"[SUCCESS] Data Inserted: 125.5 mg/dL at {now}")
     
     # 4. Read (Query)
     cursor.execute("SELECT * FROM GlucoseReadings")
     row = cursor.fetchone()
-    print(f"📖 Data Retrieved: ID={row[0]}, Value={row[1]}, Source={row[3]}")
+    print(f"[INFO] Data Retrieved: ID={row[0]}, Value={row[1]}, Source={row[3]}")
     
     conn.close()
 
